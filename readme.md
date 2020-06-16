@@ -4,7 +4,6 @@ A mod for the game Stardew Valley, allowing players to destroy every type of bus
 ## Contents
 * [Installation](#installation)
 * [Options](#options)
-* [Customization](#customization)
 
 ## Installation
 1. **Install the latest version of [SMAPI](https://smapi.io/).**
