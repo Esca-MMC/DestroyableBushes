@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestroyableBushes", "DestroyableBushes\DestroyableBushes.csproj", "{84DC86AB-5932-4AEB-AEFC-6CC0B9D0DCE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{504B63AA-2BFA-4DB9-9DE6-E279A5E41F6E}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		readme.md = readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
