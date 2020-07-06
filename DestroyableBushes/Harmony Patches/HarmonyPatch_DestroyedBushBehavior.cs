@@ -12,47 +12,59 @@ using Harmony;
 
 namespace DestroyableBushes
 {
-    public static class HarmonyPatch_BushesDropWood
+    public static class HarmonyPatch_DestroyedBushBehavior
     {
         /// <summary>Applies this Harmony patch to the game through the provided instance.</summary>
         /// <param name="harmony">This mod's Harmony instance.</param>
         public static void ApplyPatch(HarmonyInstance harmony)
         {
-            ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_BushesDropWood)}\": postfixing SDV method \"Bush.performToolAction(Tool, int, Vector2, GameLocation)\".", LogLevel.Trace);
+            ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_DestroyedBushBehavior)}\": postfixing SDV method \"Bush.performToolAction(Tool, int, Vector2, GameLocation)\".", LogLevel.Trace);
             harmony.Patch(
                 original: AccessTools.Method(typeof(Bush), nameof(Bush.performToolAction), new[] { typeof(Tool), typeof(int), typeof(Vector2), typeof(GameLocation) }),
-                postfix: new HarmonyMethod(typeof(HarmonyPatch_BushesDropWood), nameof(performToolAction_Postfix))
+                postfix: new HarmonyMethod(typeof(HarmonyPatch_DestroyedBushBehavior), nameof(performToolAction_Postfix))
             );
         }
 
-        /// <summary>If this bush was destroyed, this drops an amount of wood designated by this mod's config.json file settings.</summary>
+        /// <summary>If this bush was destroyed, this adds it to this mod's "destroyed bushes" list. It also drops an amount of wood designated by this mod's config.json file settings.</summary>
         /// <param name="t">The <see cref="Tool"/> used on this bush.</param>
+        /// <param name="tileLocation">The tile on which the tool is being used.</param>
+        /// <param name="location">The location of the bush and tool.</param>
         /// <param name="__instance">The <see cref="Bush"/> on which a tool is being used.</param>
         /// <param name="__result">True if this bush was destroyed."/></param>
         public static void performToolAction_Postfix(Tool t, Vector2 tileLocation, GameLocation location, Bush __instance, bool __result)
         {
             try
             {
-                if (__result && location != null && ModEntry.Config.AmountOfWoodDropped != null) //if this bush was destroyed AND relevant settings aren't null
+                if (__result) //if this bush was destroyed
                 {
-                    int amountOfWood = 0; //the amount of wood this bush should drop
+                    int amountOfWood; //the amount of wood this bush should drop
+                    bool shouldRegrow = false; //whether this bush should eventually be respawned
 
                     switch (__instance.size.Value) //based on the bush's size, set the amount of wood
                     {
                         case Bush.smallBush:
-                            amountOfWood = ModEntry.Config.AmountOfWoodDropped.SmallBushes;
+                            amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.SmallBushes ?? 0;
+                            shouldRegrow = true;
                             break;
                         case Bush.mediumBush:
-                            amountOfWood = ModEntry.Config.AmountOfWoodDropped.MediumBushes;
+                            amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.MediumBushes ?? 0;
+                            shouldRegrow = true;
                             break;
                         case Bush.largeBush:
-                            amountOfWood = ModEntry.Config.AmountOfWoodDropped.LargeBushes;
+                            amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.LargeBushes ?? 0;
+                            shouldRegrow = true;
                             break;
                         case Bush.greenTeaBush:
-                            amountOfWood = ModEntry.Config.AmountOfWoodDropped.GreenTeaBushes;
+                            amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.GreenTeaBushes ?? 0;
                             break;
                         default:
+                            amountOfWood = 0;
                             break;
+                    }
+
+                    if (shouldRegrow) //if this bush should eventually be respawned
+                    {
+                        ModEntry.Data.DestroyedBushes.Add(new ModData.DestroyedBush(location?.Name, __instance.tilePosition.Value, __instance.size.Value)); //add this to the list of destroyed bushes
                     }
 
                     if (amountOfWood > 0) //if this bush should drop any wood

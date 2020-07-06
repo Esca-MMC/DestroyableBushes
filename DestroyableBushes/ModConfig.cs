@@ -22,6 +22,8 @@ namespace DestroyableBushes
         public bool AllBushesAreDestroyable { get; set; } = true;
         /// <summary>A list of in-game locations where bushes should be made destroyable. If <see cref="AllBushesAreDestroyable"/> is true, this list is not used.</summary>
         public List<string> DestroyableBushLocations { get; set; } = new List<string>();
+        /// <summary>A string describing the amount of time that should pass before a destroyed bush respawns. Null or unrecognized values disable respawning.</summary>
+        public string WhenBushesRegrow { get; set; } = "3 days";
         /// <summary>The number of wood pieces dropped by each type of bush when destroyed.</summary>
         public AmountOfWoodDropped AmountOfWoodDropped { get; set; } = new AmountOfWoodDropped();
     }
@@ -34,5 +36,4 @@ namespace DestroyableBushes
         public int LargeBushes { get; set; } = 8;
         public int GreenTeaBushes { get; set; } = 0;
     }
-
 }

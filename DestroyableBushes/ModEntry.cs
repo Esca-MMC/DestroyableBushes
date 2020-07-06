@@ -16,6 +16,7 @@ namespace DestroyableBushes
     {
         public static Mod Instance { get; set; } = null;
         public static ModConfig Config { get; set; } = null;
+        public static ModData Data { get; set; } = null;
 
         public override void Entry(IModHelper helper)
         {
@@ -24,6 +25,10 @@ namespace DestroyableBushes
             Config = Helper.ReadConfig<ModConfig>(); //attempt to load (or create) config.json
 
             Helper.Events.GameLoop.GameLaunched += EnableGMCM; //try to enable Generic Mod Config Menu when the game has launched
+
+            Helper.Events.GameLoop.SaveLoaded += LoadModData;
+            Helper.Events.GameLoop.Saving += SaveModData;
+            Helper.Events.GameLoop.DayStarted += RegrowBushes;
 
             ApplyHarmonyPatches();
         }
@@ -35,7 +40,7 @@ namespace DestroyableBushes
 
             //apply all patches
             HarmonyPatch_BushesAreDestroyable.ApplyPatch(harmony);
-            HarmonyPatch_BushesDropWood.ApplyPatch(harmony);
+            HarmonyPatch_DestroyedBushBehavior.ApplyPatch(harmony);
         }
     }
 }
