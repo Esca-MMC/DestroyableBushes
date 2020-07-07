@@ -126,16 +126,20 @@ namespace DestroyableBushes
             switch (size.ToLower()) //based on the size string (converted to lowercase)
             {
                 case "0":
+                case "s":
                 case "small":
                     return Bush.smallBush;
                 case "1":
+                case "m":
                 case "med":
                 case "medium":
                     return Bush.mediumBush;
                 case "2":
+                case "l":
                 case "large":
                     return Bush.largeBush;
                 case "3":
+                case "t":
                 case "green":
                 case "greentea":
                 case "greenteabush":
