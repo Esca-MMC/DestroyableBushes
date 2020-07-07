@@ -44,7 +44,7 @@ GreenTeaBushes | A positive integer (default **0**) | The number of wood pieces 
 This mod adds the following commands to SMAPI's console. They require the Console Commands mod, which is installed automatically by SMAPI.
 
 ### add_bush
-The `add_bush` command creates a bush of the specified size.
+The `add_bush` command creates a bush of the specified size. Bushes added by this command will regrow if that setting is enabled.
 
 **Usage:** `add_bush <size> [x y] [location]`
 * **size**: The bush's size, as a name or number. 0 = "small", 1 = "medium", 2 = "large", 3 = "tea".
@@ -58,7 +58,7 @@ The `add_bush` command creates a bush of the specified size.
 * `add_bush 2 64 19 farm`
 
 ### remove_bush
-The `remove_bush` command removes a bush from the specified location.
+The `remove_bush` command removes a bush from the specified location. Bushes removed by this command will NOT regrow.
 
 **Usage:** `remove_bush [x y] [location]`
 * **x y** (optional): The bush's tile coordinates. If not provided, a bush will be removed on, or in front of, the player.

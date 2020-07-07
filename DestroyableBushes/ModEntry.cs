@@ -39,6 +39,7 @@ namespace DestroyableBushes
             (
                 name: "add_bush",
                 documentation: "Creates a bush of the specified size.\n" +
+                               "Bushes added by this command will regrow if that setting is enabled.\n" +
                                "\n" +
                                "Usage: add_bush <size> [x y] [location]\n" +
                                "- size: The bush's size, as a name or number. 0 = \"small\", 1 = \"medium\", 2 = \"large\", 3 = \"tea\".\n" +
@@ -57,6 +58,7 @@ namespace DestroyableBushes
             (
                 name: "remove_bush",
                 documentation: "Removes a bush from the specified location.\n" +
+                               "Bushes removed by this command will NOT regrow.\n" +
                                "\n" +
                                "Usage: remove_bush [x y] [location]\n" +
                                "- x y (optional): The bush's tile coordinates. If not provided, a bush will be removed on, or in front of, the player.\n" +
