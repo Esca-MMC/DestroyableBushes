@@ -18,7 +18,7 @@ Multiplayer notes:
 * The host player's "WhenBushesRegrow" setting will be used.
 
 ## Options
-Destroyable Bushes includes options to only affect certain in-game locations. The amount of wood dropped by each bush type can also be customized.
+Destroyable Bushes includes options to limit where bushes can be destroyed, change the speed at which bushes regrow, and change the amount of wood dropped by each type of bush.
 
 To edit these options:
 
