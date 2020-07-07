@@ -24,7 +24,7 @@ namespace DestroyableBushes
                     {
                         var bush = Data.DestroyedBushes[x];
 
-                        if (BushShouldRegrow(bush.DateDestroyed, Config.WhenBushesRegrow)) //if this bush should regrow today
+                        if (BushShouldRegrowToday(bush.DateDestroyed)) //if this bush should regrow today
                         {
                             GameLocation location = Game1.getLocationFromName(bush.LocationName);
 
@@ -48,52 +48,38 @@ namespace DestroyableBushes
 
         /// <summary>Determines whether a bush should regrow today.</summary>
         /// <param name="dateDestroyed">The <see cref="SDate"/> on which the bush was destroyed.</param>
-        /// <param name="whenBushesRegrow"><see cref="ModConfig.WhenBushesRegrow"/> or an equivalent string. Describes the amount of time before bushes regrow.</param>
         /// <returns>True if the bush should regrow; otherwise false.</returns>
-        private bool BushShouldRegrow(SDate dateDestroyed, string whenBushesRegrow)
+        private bool BushShouldRegrowToday(SDate dateDestroyed)
         {
-            if (dateDestroyed != null && whenBushesRegrow != null) //if the parameters aren't null
+            if (dateDestroyed == null || Config.regrowNumber == null || Config.regrowUnit == null) //if any required information is null
+            {
+                return false; //this bush should NOT regrow
+            }
+            else
             {
                 SDate regrowDate = null; //the date when this bush should regrow
 
-                string[] split = whenBushesRegrow.Trim().Split(' '); //split this string into multiple strings around space characters
-                if (split.Length >= 2) //if this produced 2 or more strings
+                switch (Config.regrowUnit.Value)
                 {
-                    if (int.TryParse(split[0], out int num)) //if the first string can be parsed into a number
-                    {
-                        switch (split[split.Length - 1]) //based on the last string (to avoid multiple spaces and similar issues)
-                        {
-                            case "day":
-                            case "days":
-                                regrowDate = dateDestroyed.AddDays(num); //regrow "num" days after the provided date
-                                break;
-                            case "month":
-                            case "months":
-                            case "season":
-                            case "seasons":
-                                regrowDate = dateDestroyed.AddDays(28 * num); //get a date "num" seasons after the provided date
-                                regrowDate = new SDate(1, regrowDate.Season, regrowDate.Year); //regrow on day 1 of that season/year
-                                break;
-                            case "year":
-                            case "years":
-                                regrowDate = new SDate(1, dateDestroyed.Season, dateDestroyed.Year + num); //regrow on day 1 of the same season in "num" years
-                                break;
-                            default:
-                                break;
-                        }
-
-                        if (regrowDate != null) //if a valid regrow date was determined
-                        {
-                            if (SDate.Now() >= regrowDate) //if the regrow date is today OR has already passed
-                            {
-                                return true; //this bush should regrow
-                            }
-                        }
-                    }
+                    case RegrowUnit.Days:
+                        regrowDate = dateDestroyed.AddDays(Config.regrowNumber.Value); //regrow after (regrowNumber) seasons
+                        break;
+                    case RegrowUnit.Seasons:
+                        regrowDate = dateDestroyed.AddDays(28 * Config.regrowNumber.Value); //get a date after (regrowNumber) seasons
+                        regrowDate = new SDate(1, regrowDate.Season, regrowDate.Year); //regrow on the first day of that season
+                        break;
+                    case RegrowUnit.Years:
+                        regrowDate = new SDate(1, "spring", dateDestroyed.Year + Config.regrowNumber.Value); //regrow after (regrowNumber) years on the first day of spring
+                        break;
+                    default:
+                        return false; //this bush should NOT regrow
                 }
-            }
 
-            return false; //this bush should NOT regrow
+                if (SDate.Now() >= regrowDate) //if the regrow date is today or has already passed
+                    return true; //this bush should regrow
+                else
+                    return false; //this bush should NOT regrow
+            }
         }
     }
 }
