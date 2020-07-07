@@ -29,6 +29,7 @@ namespace DestroyableBushes
             Helper.Events.GameLoop.SaveLoaded += LoadModData;
             Helper.Events.GameLoop.Saving += SaveModData;
             Helper.Events.GameLoop.DayStarted += RegrowBushes;
+            Helper.Events.Multiplayer.ModMessageReceived += ReceiveDestroyedBushMessage;
 
             //apply Harmony patches to SDV code
             ApplyHarmonyPatches();

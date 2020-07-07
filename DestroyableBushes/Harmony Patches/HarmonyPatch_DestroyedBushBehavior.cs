@@ -64,7 +64,18 @@ namespace DestroyableBushes
 
                     if (shouldRegrow) //if this bush should eventually be respawned
                     {
-                        ModEntry.Data.DestroyedBushes.Add(new ModData.DestroyedBush(location?.Name, __instance.tilePosition.Value, __instance.size.Value)); //add this to the list of destroyed bushes
+                        ModData.DestroyedBush destroyed = new ModData.DestroyedBush(location?.Name, __instance.tilePosition.Value, __instance.size.Value); //create a record of this bush
+
+                        if (Context.IsMainPlayer) //if this code is run by the main player
+                            ModEntry.Data.DestroyedBushes.Add(destroyed); //add the record to the list of destroyed bushes
+                        else //if this code is run by a multiplayer farmhand
+                            ModEntry.Instance.Helper.Multiplayer.SendMessage //send the record to the main player
+                            (
+                                message: destroyed,
+                                messageType: "DestroyedBush",
+                                modIDs: new[] { ModEntry.Instance.ModManifest.UniqueID },
+                                playerIDs: new[] { Game1.serverHost.Value.UniqueMultiplayerID }
+                            );
                     }
 
                     if (amountOfWood > 0) //if this bush should drop any wood

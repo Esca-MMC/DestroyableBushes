@@ -75,6 +75,7 @@
     <Compile Include="ModConfig.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMAPI Events\ReceiveDestroyedBushMessage.cs" />
     <Compile Include="SMAPI Events\RegrowBushes.cs" />
     <Compile Include="SMAPI Events\LoadModData.cs" />
     <Compile Include="SMAPI Events\SaveModData.cs" />
