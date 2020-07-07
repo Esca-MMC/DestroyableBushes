@@ -4,6 +4,9 @@ A mod for the game Stardew Valley, allowing players to destroy every type of bus
 ## Contents
 * [Installation](#installation)
 * [Options](#options)
+* [Commands](#commands)
+	* [add_bush](#add_bush)
+	* [remove_bush](#remove_bush)
 
 ## Installation
 1. **Install the latest version of [SMAPI](https://smapi.io/).**
@@ -15,7 +18,6 @@ Multiplayer notes:
 * The host player's "WhenBushesRegrow" setting will be used.
 
 ## Options
-
 Destroyable Bushes includes options to only affect certain in-game locations. The amount of wood dropped by each bush type can also be customized.
 
 To edit these options:
@@ -37,3 +39,32 @@ SmallBushes | A positive integer (default **2**) | The number of wood pieces dro
 MediumBushes | A positive integer (default **4**) | The number of wood pieces dropped by medium bushes when destroyed.
 LargeBushes | A positive integer (default **8**) | The number of wood pieces dropped by large bushes when destroyed.
 GreenTeaBushes | A positive integer (default **0**) | The number of wood pieces dropped by green tea bushes when destroyed.
+
+## Commands
+This mod adds the following commands to SMAPI's console. They require the Console Commands mod, which is installed automatically by SMAPI.
+
+### add_bush
+The `add_bush` command creates a bush of the specified size.
+
+**Usage:** `add_bush <size> [x y] [location]`
+* **size**: The bush's size, as a name or number. 0 = "small", 1 = "medium", 2 = "large", 3 = "tea".
+* **x y** (optional): The bush's tile coordinates. If not provided, the bush will appear in front of the player.
+* **location** (optional): The name of the bush's map, e.g. \"Farm\". If not provided, the player's current map will be used.
+
+**Examples:**
+* `add_bush 2`
+* `add_bush large`
+* `add_bush 2 64 19`
+* `add_bush 2 64 19 farm`
+
+### remove_bush
+The `remove_bush` command removes a bush from the specified location.
+
+**Usage:** `remove_bush [x y] [location]`
+* **x y** (optional): The bush's tile coordinates. If not provided, a bush will be removed on, or in front of, the player.
+* **location** (optional): The name of the bush's map, e.g. \"Farm\". If not provided, the player's current map will be used.
+
+**Examples:**
+* `remove_bush`
+* `remove_bush 64 19`
+* `remove_bush 64 19 farm`

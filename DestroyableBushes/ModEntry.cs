@@ -40,7 +40,7 @@ namespace DestroyableBushes
                 documentation: "Creates a bush of the specified size.\n" +
                                "\n" +
                                "Usage: add_bush <size> [x y] [location]\n" +
-                               "- size: The bush's size, either as a number or name 0 = \"small\", 1 = \"medium\", 2 = \"large\", 3 = \"tea\").\n" +
+                               "- size: The bush's size, as a name or number. 0 = \"small\", 1 = \"medium\", 2 = \"large\", 3 = \"tea\".\n" +
                                "- x y (optional): The bush's tile coordinates. If not provided, the bush will appear in front of the player.\n" +
                                "- location (optional): The name of the bush's map, e.g. \"Farm\". If not provided, the player's current map will be used.\n" +
                                "\n" +
