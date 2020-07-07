@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compatibility\GenericModConfigMenu.cs" />
+    <Compile Include="Console Commands\AddBush.cs" />
+    <Compile Include="Console Commands\RemoveBush.cs" />
     <Compile Include="Harmony Patches\HarmonyPatch_DestroyedBushBehavior.cs" />
     <Compile Include="Harmony Patches\HarmonyPatch_BushesAreDestroyable.cs" />
     <Compile Include="ModData.cs" />
