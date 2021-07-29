@@ -78,7 +78,7 @@ namespace DestroyableBushes
 
             //all necessary information has been parsed
 
-            if (location.getLargeTerrainFeatureAt(x, y) is Bush bush) //if there is a bush at this tile
+            if (location.getLargeTerrainFeatureAt(x, y) is Bush bush && bush.size.Value != 4) //if there is a bush at this tile AND it's not a walnut bush
                 location.largeTerrainFeatures.Remove(bush); //remove the bush
             else if (args.Length < 2) //if no bush was found AND this tile is the player's position
             {
@@ -98,7 +98,7 @@ namespace DestroyableBushes
                         break;
                 }
 
-                if (location.getLargeTerrainFeatureAt(x, y) is Bush frontBush) //if there is a bush on the tile in front of the player
+                if (location.getLargeTerrainFeatureAt(x, y) is Bush frontBush && frontBush.size.Value != 4) //if there is a bush on the tile in front of the player AND it's not a walnut bush
                 {
                     location.largeTerrainFeatures.Remove(frontBush); //remove the bush
                 }
