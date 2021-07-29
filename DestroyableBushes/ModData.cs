@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using StardewModdingAPI;
-using StardewModdingAPI.Events;
-using StardewModdingAPI.Utilities;
-using StardewValley;
+﻿using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using StardewModdingAPI.Utilities;
+using System.Collections.Generic;
 
 namespace DestroyableBushes
 {
