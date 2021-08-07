@@ -56,7 +56,7 @@ namespace DestroyableBushes
                 (
                     ModManifest,
                     "Medium bushes",
-                    "Check this box to make medium bushes destroyable.",
+                    "Check this box to make medium bushes destroyable. These are the type that can produce berries.",
                     () => Config.DestroyableBushTypes.MediumBushes,
                     (bool val) => Config.DestroyableBushTypes.MediumBushes = val
                 );
