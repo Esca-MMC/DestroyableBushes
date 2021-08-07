@@ -32,20 +32,33 @@ namespace DestroyableBushes
         {
             try
             {
-                if (ModEntry.Config.AllBushesAreDestroyable) //if all bushes should be destroyable
-                {
-                    __result = true; //return true
-                    return; //end of patch
-                }
-                else if (location != null && ModEntry.Config.DestroyableBushLocations != null) //if this location and the relevant config data aren't null
+                if (ModEntry.Config.DestroyableBushLocations?.Count > 0) //if the location list has any entries
                 {
                     foreach (string locationName in ModEntry.Config.DestroyableBushLocations) //for each name in the list
                     {
-                        if (locationName.Equals(location.Name, StringComparison.OrdinalIgnoreCase)) //if the listed name matches the bush's location name
+                        if (locationName.Equals(location?.Name ?? "", StringComparison.OrdinalIgnoreCase)) //if the listed name matches the bush's location name
                         {
                             __result = true; //return true
-                            return; //end of patch
+                            return;
                         }
+                    }
+                }
+                else //if the location list has no entries
+                {
+                    switch (__instance.size)
+                    {
+                        case Bush.smallBush:
+                            if (ModEntry.Config.DestroyableBushTypes.SmallBushes) //if allow to destroy this bush size
+                                __result = true; //return true
+                            return;
+                        case Bush.mediumBush:
+                            if (ModEntry.Config.DestroyableBushTypes.MediumBushes) //if allow to destroy this bush size
+                                __result = true; //return true
+                            return;
+                        case Bush.largeBush:
+                            if (ModEntry.Config.DestroyableBushTypes.LargeBushes) //if allow to destroy this bush size
+                                __result = true; //return true
+                            return;
                     }
                 }
 

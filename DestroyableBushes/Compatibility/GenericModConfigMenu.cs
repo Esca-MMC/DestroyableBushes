@@ -24,26 +24,49 @@ namespace DestroyableBushes
                 api.RegisterSimpleOption
                 (
                     ModManifest,
-                    "All bushes are destroyable",
-                    "Check this box to make bushes destroyable everywhere.\nUncheck this box to make bushes destroyable at locations in the list below.",
-                    () => Config.AllBushesAreDestroyable,
-                    (bool val) => Config.AllBushesAreDestroyable = val
+                    "When bushes regrow",
+                    "The amount of time before destroyed bushes will regrow.\nType a number and then a unit of time (Days, Seasons, Years).\nLeave this blank to never respawn bushes.\nExamples: \"3 days\" \"1 season\" \"1 year\"",
+                    () => Config.WhenBushesRegrow ?? "null", //return the string "null" if the setting is null
+                    (string val) => Config.WhenBushesRegrow = val
                 );
                 api.RegisterSimpleOption
                 (
                     ModManifest,
                     "Destroyable bush locations",
-                    "A list of locations where bushes should be destroyable.\nSeparate each name with a comma.\nExample: \"Farm, BusStop, Forest, Woods\"",
+                    "A list of locations where bushes should be destroyable.\nIf the list is empty, all locations will be allowed.\nSeparate each name with a comma.\nExample: \"Farm, BusStop, Forest, Woods\"",
                     () => GMCMLocationList,
                     (string val) => GMCMLocationList = val
+                );
+
+                api.RegisterLabel
+                (
+                    ModManifest,
+                    "Destroyable bush types",
+                    "The types of bush that are allowed to be destroyed."
                 );
                 api.RegisterSimpleOption
                 (
                     ModManifest,
-                    "When bushes regrow",
-                    "The amount of time before destroyed bushes will regrow.\nType a number and then a unit of time (Days, Seasons, Years).\nLeave this blank to never respawn bushes.\nExamples: \"3 days\" \"1 season\" \"1 year\"",
-                    () => Config.WhenBushesRegrow ?? "null", //return the string "null" if the setting is null
-                    (string val) => Config.WhenBushesRegrow = val
+                    "Small bushes",
+                    "Check this box to make small bushes destroyable.",
+                    () => Config.DestroyableBushTypes.SmallBushes,
+                    (bool val) => Config.DestroyableBushTypes.SmallBushes = val
+                );
+                api.RegisterSimpleOption
+                (
+                    ModManifest,
+                    "Medium bushes",
+                    "Check this box to make medium bushes destroyable.",
+                    () => Config.DestroyableBushTypes.MediumBushes,
+                    (bool val) => Config.DestroyableBushTypes.MediumBushes = val
+                );
+                api.RegisterSimpleOption
+                (
+                    ModManifest,
+                    "Large bushes",
+                    "Check this box to make large bushes destroyable.",
+                    () => Config.DestroyableBushTypes.LargeBushes,
+                    (bool val) => Config.DestroyableBushTypes.LargeBushes = val
                 );
 
                 api.RegisterLabel
@@ -52,7 +75,6 @@ namespace DestroyableBushes
                     "Amount of wood dropped",
                     "The number of wood pieces dropped when each type of bush is destroyed."
                 );
-
                 api.RegisterSimpleOption
                 (
                     ModManifest,
