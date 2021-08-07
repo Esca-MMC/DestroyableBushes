@@ -18,6 +18,7 @@ namespace DestroyableBushes
                     return;
 
                 api.RegisterModConfig(ModManifest, () => Config = new ModConfig(), () => Helper.WriteConfig(Config)); //register "revert to default" and "write" methods for this mod's config
+                api.SetDefaultIngameOptinValue(ModManifest, true); //allow in-game setting changes (rather than just at the main menu)
 
                 //register an option for each of this mod's config settings
                 api.RegisterSimpleOption
@@ -137,6 +138,7 @@ namespace DestroyableBushes
     public interface GenericModConfigMenuAPI
     {
         void RegisterModConfig(IManifest mod, Action revertToDefault, Action saveToFile);
+        void SetDefaultIngameOptinValue(IManifest mod, bool optedIn);
 
         void RegisterLabel(IManifest mod, string labelName, string labelDesc);
         void RegisterSimpleOption(IManifest mod, string optionName, string optionDesc, Func<bool> optionGet, Action<bool> optionSet);
