@@ -1,9 +1,11 @@
-﻿using StardewModdingAPI;
+﻿using Microsoft.Xna.Framework;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using System;
+using System.Linq;
 
 namespace DestroyableBushes
 {
@@ -23,7 +25,7 @@ namespace DestroyableBushes
                         {
                             GameLocation location = Game1.getLocationFromName(bush.LocationName);
 
-                            if (location?.isTileOccupiedForPlacement(bush.Tile) == false) //if this bush's tile is NOT obstructed by anything
+                            if (location != null && !bush.GetCollisionTiles().Any(tile => location.isTileOccupiedForPlacement(tile) || location.terrainFeatures.ContainsKey(tile))) //if this bush's tiles are NOT obstructed by anything (including passable features)
                             {
                                 try
                                 {
