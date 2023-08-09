@@ -1,5 +1,5 @@
-﻿using StardewModdingAPI;
-using HarmonyLib;
+﻿using HarmonyLib;
+using StardewModdingAPI;
 
 namespace DestroyableBushes
 {

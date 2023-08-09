@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
@@ -17,7 +16,7 @@ namespace DestroyableBushes
             {
                 if (Data?.DestroyedBushes != null) //if the list of destroyed bushes exists
                 {
-                    for(int x = Data.DestroyedBushes.Count - 1; x >= 0; x--) //for each destroyed bush (looping backward to allow removal)
+                    for (int x = Data.DestroyedBushes.Count - 1; x >= 0; x--) //for each destroyed bush (looping backward to allow removal)
                     {
                         var bush = Data.DestroyedBushes[x];
 
