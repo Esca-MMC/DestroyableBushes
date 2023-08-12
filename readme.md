@@ -8,7 +8,7 @@ A mod for the game Stardew Valley, allowing players to destroy every type of bus
 	* [add_bush](#add_bush)
 	* [remove_bush](#remove_bush)
 * [Translation](#translation)
-	* [Available Languages](#available_languages)
+	* [Available Languages](#available-languages)
 
 ## Installation
 1. **Install the latest version of [SMAPI](https://smapi.io/).**
