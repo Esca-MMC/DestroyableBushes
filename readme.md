@@ -85,3 +85,4 @@ See the Stardew Valley Wiki's [Modding:Translations](https://stardewvalleywiki.c
 Language | File | Contributor(s)
 ---------|------|------------
 English | [default.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/default.json) | [Esca-MMC](https://github.com/Esca-MMC)
+Korean | [ko.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/ko.json) | [wally232](https://github.com/wally232)
