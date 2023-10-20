@@ -53,7 +53,7 @@ namespace DestroyableBushes
                 set
                 {
                     day = value.Day;
-                    season = value.Season;
+                    season = value.SeasonKey;
                     year = value.Year;
                 }
             }
