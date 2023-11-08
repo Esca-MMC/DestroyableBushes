@@ -80,8 +80,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.DestroyableBushTypes.SmallBushes,
                     setValue: (bool val) => Config.DestroyableBushTypes.SmallBushes = val,
-                    name: () => Helper.Translation.Get("DestroyableBushTypes.SmallBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.SmallBushes.Desc")
+                    name: () => Helper.Translation.Get("SmallBushes"),
+                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.SmallBushes")
                 );
 
                 api.AddBoolOption
@@ -89,8 +89,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.DestroyableBushTypes.MediumBushes,
                     setValue: (bool val) => Config.DestroyableBushTypes.MediumBushes = val,
-                    name: () => Helper.Translation.Get("DestroyableBushTypes.MediumBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.MediumBushes.Desc")
+                    name: () => Helper.Translation.Get("MediumBushes"),
+                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.MediumBushes")
                 );
 
                 api.AddBoolOption
@@ -98,8 +98,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.DestroyableBushTypes.LargeBushes,
                     setValue: (bool val) => Config.DestroyableBushTypes.LargeBushes = val,
-                    name: () => Helper.Translation.Get("DestroyableBushTypes.LargeBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.LargeBushes.Desc")
+                    name: () => Helper.Translation.Get("LargeBushes"),
+                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.LargeBushes")
                 );
 
                 api.AddSectionTitle
@@ -114,8 +114,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.AmountOfWoodDropped.SmallBushes,
                     setValue: (int val) => Config.AmountOfWoodDropped.SmallBushes = val,
-                    name: () => Helper.Translation.Get("AmountOfWoodDropped.SmallBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.SmallBushes.Desc"),
+                    name: () => Helper.Translation.Get("SmallBushes"),
+                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.SmallBushes"),
                     min: 0
                 );
 
@@ -124,8 +124,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.AmountOfWoodDropped.MediumBushes,
                     setValue: (int val) => Config.AmountOfWoodDropped.MediumBushes = val,
-                    name: () => Helper.Translation.Get("AmountOfWoodDropped.MediumBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.MediumBushes.Desc"),
+                    name: () => Helper.Translation.Get("MediumBushes"),
+                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.MediumBushes"),
                     min: 0
                 );
 
@@ -134,8 +134,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.AmountOfWoodDropped.LargeBushes,
                     setValue: (int val) => Config.AmountOfWoodDropped.LargeBushes = val,
-                    name: () => Helper.Translation.Get("AmountOfWoodDropped.LargeBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.LargeBushes.Desc"),
+                    name: () => Helper.Translation.Get("LargeBushes"),
+                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.LargeBushes"),
                     min: 0
                 );
 
@@ -144,8 +144,8 @@ namespace DestroyableBushes
                     mod: ModManifest,
                     getValue: () => Config.AmountOfWoodDropped.GreenTeaBushes,
                     setValue: (int val) => Config.AmountOfWoodDropped.GreenTeaBushes = val,
-                    name: () => Helper.Translation.Get("AmountOfWoodDropped.GreenTeaBushes.Name"),
-                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.GreenTeaBushes.Desc"),
+                    name: () => Helper.Translation.Get("GreenTeaBushes"),
+                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.GreenTeaBushes"),
                     min: 0
                 );
             }

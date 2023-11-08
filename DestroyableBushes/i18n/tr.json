@@ -1,0 +1,21 @@
+{
+	"WhenBushesRegrow.Name": "Çalıların yeniden büyüme süresi",
+	"WhenBushesRegrow.Desc": "Yok edilen çalıların yeniden büyümesi için geçecek süre.\nBir sayı ve ardından İnglizce olarak bir zaman birimi yazın (Days, Seasons, Years).\nBu boş bırakılırsa, çalılar asla yeniden büyümeyecektir.\nÖrnekler: \"3 days\" \"1 season\" \"1 year\"",
+	"DestroyableBushLocations.Name": "Yok edilebilir çalı yerleri",
+	"DestroyableBushLocations.Desc": "Çalıların yok edilebilir olması gereken konumların listesi.\nListe boşsa, tüm konumlara izin verilir.\nHer adı virgülle ayırın.\nÖrnek: \"Farm, BusStop, Forest, Woods\"",
+	"SmallBushes": "Küçük çalılar",
+	"MediumBushes": "Orta boy çalılar",
+	"LargeBushes": "Büyük çalılar",
+	"GreenTeaBushes": "Green tea bushes",
+	"DestroyableBushTypes.Name": "Yok edilebilir çalı türleri",
+	"DestroyableBushTypes.Desc": "Yok edilmesine izin verilen çalı türleri.",
+	"DestroyableBushTypes.SmallBushes": "Küçük çalıları yok edilebilir yapmak için bu kutuyu işaretleyin.",
+	"DestroyableBushTypes.MediumBushes": "Orta boy çalıları yok edilebilir yapmak için bu kutuyu işaretleyin. Bunlar çilek üretebilen türlerdir.",
+	"DestroyableBushTypes.LargeBushes": "Büyük çalıları yok edilebilir yapmak için bu kutuyu işaretleyin.",
+	"AmountOfWoodDropped.Name": "Düşen odun miktarı",
+	"AmountOfWoodDropped.Desc": "Her bir çalı türü yok edildiğinde düşen odun parçalarının sayısı.",
+	"AmountOfWoodDropped.SmallBushes": "The number of wood pieces dropped when a small bush is destroyed.",
+	"AmountOfWoodDropped.MediumBushes": "The number of wood pieces dropped when a medium bush is destroyed.",
+	"AmountOfWoodDropped.LargeBushes": "The number of wood pieces dropped when a large bush is destroyed.",
+	"AmountOfWoodDropped.GreenTeaBushes": "The number of wood pieces dropped when a green tea bush is destroyed."
+}
