@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
-using Microsoft.Xna.Framework;
 using StardewModdingAPI;
-using StardewValley;
 using StardewValley.TerrainFeatures;
 using System;
 
