@@ -23,7 +23,7 @@ namespace DestroyableBushes
             Helper.Events.Multiplayer.ModMessageReceived += ReceiveDestroyedBushMessage;
 
             //apply Harmony patches to SDV code
-            ApplyHarmonyPatches();
+            Helper.Events.GameLoop.GameLaunched += ApplyHarmonyPatches;
 
             //enable SMAPI console commands
             Helper.ConsoleCommands.Add
@@ -64,7 +64,7 @@ namespace DestroyableBushes
         }
 
         /// <summary>Applies any Harmony patches used by this mod.</summary>
-        private void ApplyHarmonyPatches()
+        private void ApplyHarmonyPatches(object sender, StardewModdingAPI.Events.GameLaunchedEventArgs e)
         {
             Harmony harmony = new Harmony(ModManifest.UniqueID); //create this mod's Harmony instance
 
