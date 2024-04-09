@@ -102,6 +102,15 @@ namespace DestroyableBushes
                     tooltip: () => Helper.Translation.Get("DestroyableBushTypes.LargeBushes.Desc")
                 );
 
+                api.AddBoolOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.DestroyableBushTypes.WalnutBushes,
+                    setValue: (bool val) => Config.DestroyableBushTypes.WalnutBushes = val,
+                    name: () => Helper.Translation.Get("DestroyableBushTypes.WalnutBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("DestroyableBushTypes.WalnutBushes.Desc")
+                );
+
                 api.AddSectionTitle
                 (
                     mod: ModManifest,
@@ -136,6 +145,16 @@ namespace DestroyableBushes
                     setValue: (int val) => Config.AmountOfWoodDropped.LargeBushes = val,
                     name: () => Helper.Translation.Get("AmountOfWoodDropped.LargeBushes.Name"),
                     tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.LargeBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.AmountOfWoodDropped.WalnutBushes,
+                    setValue: (int val) => Config.AmountOfWoodDropped.WalnutBushes = val,
+                    name: () => Helper.Translation.Get("AmountOfWoodDropped.WalnutBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.WalnutBushes.Desc"),
                     min: 0
                 );
 

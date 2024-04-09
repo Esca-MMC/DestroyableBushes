@@ -98,6 +98,7 @@ namespace DestroyableBushes
         public bool SmallBushes { get; set; } = true;
         public bool MediumBushes { get; set; } = true;
         public bool LargeBushes { get; set; } = true;
+        public bool WalnutBushes { get; set; } = true;
     }
 
     /// <summary>A group of config.json file settings. Sets the number of wood pieces dropped by each type of bush when destroyed.</summary>
@@ -106,6 +107,7 @@ namespace DestroyableBushes
         public int SmallBushes { get; set; } = 2;
         public int MediumBushes { get; set; } = 4;
         public int LargeBushes { get; set; } = 8;
+        public int WalnutBushes { get; set; } = 4;
         public int GreenTeaBushes { get; set; } = 0;
     }
 

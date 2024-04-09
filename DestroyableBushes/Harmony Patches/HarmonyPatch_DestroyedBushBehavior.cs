@@ -48,6 +48,10 @@ namespace DestroyableBushes
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.LargeBushes ?? 0;
                             shouldRegrow = true;
                             break;
+                        case Bush.walnutBush:
+                            amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.WalnutBushes ?? 0;
+                            shouldRegrow = true;
+                            break;
                         case Bush.greenTeaBush:
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.GreenTeaBushes ?? 0;
                             break;
@@ -65,6 +69,10 @@ namespace DestroyableBushes
                             {
                                 safeOffset = __instance.tileSheetOffset.Value; //get the bush's offset
                             }
+                        }
+                        else //if this is a walnut bush
+                        {
+                            safeOffset = 0; //force it to respawn without a walnut
                         }
 
                         ModData.DestroyedBush destroyed = new ModData.DestroyedBush(__instance.Location?.Name, __instance.Tile, __instance.size.Value, __instance.townBush.Value, safeOffset); //create a record of this bush
