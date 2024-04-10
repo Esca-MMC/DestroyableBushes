@@ -13,11 +13,18 @@ namespace DestroyableBushes
         /// <param name="harmony">This mod's Harmony instance.</param>
         public static void ApplyPatch(Harmony harmony)
         {
-            ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_DestroyedBushBehavior)}\": postfixing SDV method \"Bush.performToolAction(Tool, int, Vector2)\".", LogLevel.Trace);
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Bush), nameof(Bush.performToolAction), new[] { typeof(Tool), typeof(int), typeof(Vector2) }),
-                postfix: new HarmonyMethod(typeof(HarmonyPatch_DestroyedBushBehavior), nameof(performToolAction_Postfix))
-            );
+            try
+            {
+                ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_DestroyedBushBehavior)}\": postfixing SDV method \"Bush.performToolAction(Tool, int, Vector2)\".", LogLevel.Trace);
+                harmony.Patch(
+                    original: AccessTools.Method(typeof(Bush), nameof(Bush.performToolAction), new[] { typeof(Tool), typeof(int), typeof(Vector2) }),
+                    postfix: new HarmonyMethod(typeof(HarmonyPatch_DestroyedBushBehavior), nameof(performToolAction_Postfix))
+                );
+            }
+            catch (Exception ex)
+            {
+                ModEntry.Instance.Monitor.LogOnce($"\"{nameof(HarmonyPatch_DestroyedBushBehavior)}\" encountered an error while applying patches. Bushes might not drop wood or regrow when destroyed. Full error message:\n{ex.ToString()}", LogLevel.Error);
+            }
         }
 
         /// <summary>If this bush was destroyed, this adds it to this mod's "destroyed bushes" list. It also drops an amount of wood designated by this mod's config.json file settings.</summary>

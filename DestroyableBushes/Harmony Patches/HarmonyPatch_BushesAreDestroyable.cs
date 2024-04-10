@@ -14,17 +14,24 @@ namespace DestroyableBushes
         /// <param name="harmony">This mod's Harmony instance.</param>
         public static void ApplyPatch(Harmony harmony)
         {
-            ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\": transpiling SDV method \"Bush.performToolAction(Tool, int, Vector2)\".", LogLevel.Trace);
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Bush), nameof(Bush.performToolAction)),
-                transpiler: new HarmonyMethod(typeof(HarmonyPatch_BushesAreDestroyable), nameof(performToolAction_Transpiler))
-            );
+            try
+            {
+                ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\": transpiling SDV method \"Bush.performToolAction(Tool, int, Vector2)\".", LogLevel.Trace);
+                harmony.Patch(
+                    original: AccessTools.Method(typeof(Bush), nameof(Bush.performToolAction)),
+                    transpiler: new HarmonyMethod(typeof(HarmonyPatch_BushesAreDestroyable), nameof(performToolAction_Transpiler))
+                );
 
-            ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\": postfixing SDV method \"Bush.isDestroyable()\".", LogLevel.Trace);
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Bush), nameof(Bush.isDestroyable)),
-                postfix: new HarmonyMethod(typeof(HarmonyPatch_BushesAreDestroyable), nameof(isDestroyable_Postfix))
-            );
+                ModEntry.Instance.Monitor.Log($"Applying Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\": postfixing SDV method \"Bush.isDestroyable()\".", LogLevel.Trace);
+                harmony.Patch(
+                    original: AccessTools.Method(typeof(Bush), nameof(Bush.isDestroyable)),
+                    postfix: new HarmonyMethod(typeof(HarmonyPatch_BushesAreDestroyable), nameof(isDestroyable_Postfix))
+                );
+            }
+            catch (Exception ex)
+            {
+                ModEntry.Instance.Monitor.LogOnce($"\"{nameof(HarmonyPatch_BushesAreDestroyable)}\" encountered an error while applying patches. Bushes might not be destroyable. Full error message:\n{ex.ToString()}", LogLevel.Error);
+            }
         }
 
 
@@ -141,7 +148,7 @@ namespace DestroyableBushes
             }
             catch (Exception ex)
             {
-                ModEntry.Instance.Monitor.LogOnce($"Harmony patch \"{nameof(isDestroyable_Postfix)}\" has encountered an error:\n{ex.ToString()}", LogLevel.Error);
+                ModEntry.Instance.Monitor.LogOnce($"Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\" has encountered an error. Bushes might not be destroyable. Full error message:\n{ex.ToString()}", LogLevel.Error);
             }
         }
     }
