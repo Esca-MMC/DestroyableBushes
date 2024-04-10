@@ -1,5 +1,7 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
+using StardewValley.TokenizableStrings;
 using System;
 using System.Collections.Generic;
 
@@ -50,6 +52,35 @@ namespace DestroyableBushes
                 );
 
                 //register an option for each config setting
+                api.AddTextOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Math.Clamp(Config.AxeUpgradesRequired, 0, 4).ToString(), //get the value as a clamped string
+                    setValue: (string val) => Config.AxeUpgradesRequired = int.Parse(val), //set by parsing internal text value to integer
+                    name: () => Helper.Translation.Get("AxeUpgradesRequired.Name"),
+                    tooltip: () => Helper.Translation.Get("AxeUpgradesRequired.Desc"),
+                    allowedValues: ["0", "1", "2", "3", "4"],
+                    formatAllowedValue: (string val) =>
+                    {
+                        string axeDisplayName = Game1.content.LoadString("Strings\\StringsFromCSFiles:Axe.cs.1"); //load the translated word "Axe"
+
+                        //construct the game's translated display name for each entry
+                        switch (val)
+                        {
+                            case "1":
+                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14299", axeDisplayName);
+                            case "2":
+                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14300", axeDisplayName);
+                            case "3":
+                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14301", axeDisplayName);
+                            case "4":
+                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14302", axeDisplayName);
+                            default:
+                                return axeDisplayName;
+                        }
+                    }
+                );
+
                 api.AddTextOption
                 (
                     mod: ModManifest,

@@ -8,6 +8,9 @@ namespace DestroyableBushes
     /// <summary>A collection of this mod's config.json file settings.</summary>
     public class ModConfig
     {
+        /// <summary>The number of axe upgrades required to destroy non-tea bushes. 0 allows the default axe to remove bushes, 1 requires the copper axe or better, etc.</summary>
+        public int AxeUpgradesRequired { get; set; } = 0;
+
         /// <summary>The number component of <see cref="WhenBushesRegrow"/>.</summary>
         [JsonIgnore]
         public int? regrowNumber = 3;

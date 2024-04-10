@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using StardewModdingAPI;
+using StardewValley;
 using StardewValley.TerrainFeatures;
+using StardewValley.Tools;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -30,20 +32,27 @@ namespace DestroyableBushes
             }
             catch (Exception ex)
             {
-                ModEntry.Instance.Monitor.LogOnce($"\"{nameof(HarmonyPatch_BushesAreDestroyable)}\" encountered an error while applying patches. Bushes might not be destroyable. Full error message:\n{ex.ToString()}", LogLevel.Error);
+                ModEntry.Instance.Monitor.LogOnce($"\"{nameof(HarmonyPatch_BushesAreDestroyable)}\" encountered an error while applying patches. Bushes might be indestructible. Full error message:\n{ex.ToString()}", LogLevel.Error);
             }
         }
 
 
         /*
             Old C#:
-                if (size == 4) //note: walnut bushes are size 4
+                if (size == 4)
                     return false;
+                [...]
+                if ((int)axe.upgradeLevel >= 1 || (int)this.size == 3)
+                [...]
+                this.health -= (((int)this.size == 3) ? 0.5f : ((float)(int)axe.upgradeLevel / 5f));
              
             New C#:
-                _ = size; //discard size's value after loading it
                 if (0 == 4)
                     return false;
+                [...]
+                if ((int)axe.upgradeLevel >= getUpgradeLevelRequirement() || (int)this.size == 3)
+                [...]
+                this.health -= (((int)this.size == 3) ? 0.5f : improveNormalAxeDamage(((float)(int)axe.upgradeLevel / 5f)));
              
             Old IL:
                 IL_000b: ldarg.0
@@ -51,6 +60,20 @@ namespace DestroyableBushes
 	            IL_0011: call !0 class Netcode.NetFieldBase`2int32, class Netcode.NetInt::op_Implicit(class Netcode.NetFieldBase`2!0, !1)
 	            IL_0016: ldc.i4.4
 	            IL_0017: bne.un.s IL_001b
+                [...]
+                IL_009e: ldloc.2
+		        IL_009f: ldfld class Netcode.NetInt StardewValley.Tool::upgradeLevel
+		        IL_00a4: call int32 Netcode.NetInt::op_Implicit(class Netcode.NetInt)
+		        IL_00a9: ldc.i4.1
+		        IL_00aa: bge.s IL_00bd
+                [...]
+                IL_00d2: ldloc.2
+		        IL_00d3: ldfld class Netcode.NetInt StardewValley.Tool::upgradeLevel
+		        IL_00d8: call int32 Netcode.NetInt::op_Implicit(class Netcode.NetInt)
+		        IL_00dd: conv.r4
+		        IL_00de: ldc.r4 5
+		        IL_00e3: div
+		        IL_00e4: br.s IL_00eb
              
             New IL:
                 IL_000b: ldarg.0
@@ -60,9 +83,24 @@ namespace DestroyableBushes
                     (?): ldc.i4.0
 	            IL_0016: ldc.i4.4
 	            IL_0017: bne.un.s IL_001b
+                [...]
+                IL_009e: ldloc.2
+		        IL_009f: ldfld class Netcode.NetInt StardewValley.Tool::upgradeLevel
+		        IL_00a4: call int32 Netcode.NetInt::op_Implicit(class Netcode.NetInt)
+		        IL_00a9: call int32 DestroyableBushes.HarmonyPatch_BushesAreDestroyable::getUpgradeLevelRequirement()
+		        IL_00aa: bge.s IL_00bd
+                [...]
+                IL_00d2: ldloc.2
+		        IL_00d3: ldfld class Netcode.NetInt StardewValley.Tool::upgradeLevel
+		        IL_00d8: call int32 Netcode.NetInt::op_Implicit(class Netcode.NetInt)
+		        IL_00dd: conv.r4
+		        IL_00de: ldc.r4 5
+		        IL_00e3: div
+                    (?): call float DestroyableBushes.HarmonyPatch_BushesAreDestroyable::improveNormalAxeDamage(float)
+		        IL_00e4: br.s IL_00eb
         */
 
-        /// <summary>Allows walnut bushes to be destroyed.</summary>
+        /// <summary>Allows walnut bushes to be destroyed, modifies the axe upgrades required to destroy non-tea bushes, and modifies the number of hits required to destroy them.</summary>
         /// <param name="instructions">The original method's CIL code.</param>
         private static IEnumerable<CodeInstruction> performToolAction_Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -85,7 +123,43 @@ namespace DestroyableBushes
                             new CodeInstruction(OpCodes.Ldc_I4_0)
                         ]);
 
-                        ModEntry.Instance.Monitor.VerboseLog($"Transpiler replaced \"Bush.size == 4\" with \"0 == 4\" at line {x}.");
+                        ModEntry.Instance.Monitor.VerboseLog($"Transpiler modified \"Bush.size == 4\" to \"0 == 4\" near instruction #{x}.");
+                    }
+                }
+
+                var upgradeField = AccessTools.Field(typeof(Tool), "upgradeLevel"); //get the field info for Tool.upgradeLevel (NOT "Tool.UpgradeLevel", "Axe.upgradeLevel", etc)
+
+                var requirementMethod = AccessTools.Method(typeof(HarmonyPatch_BushesAreDestroyable), nameof(getUpgradeLevelRequirement)); //get the method to use when replacing the upgrade requirement
+
+                for (int x = patched.Count - 3; x >= 0; x--) //for each instruction, looping backward, skipping the last 2
+                {
+                    //if these instructions push axe.upgradeLevel's value and then the integer 1 onto the stack
+                    if (patched[x].opcode == OpCodes.Ldfld && patched[x].operand?.Equals(upgradeField) == true
+                     && (patched[x + 1].opcode == OpCodes.Call || patched[x + 1].opcode == OpCodes.Callvirt)
+                     && patched[x + 2].opcode == OpCodes.Ldc_I4_1)
+                    {
+                        var replacement = new CodeInstruction(OpCodes.Call, requirementMethod); //create an instruction to call the config-based requirement check
+                        replacement = replacement.WithLabels(patched[x + 2].labels); //copy the labels from the original "push integer 1" instruction, if any
+                        patched[x + 2] = replacement; //replace the original instruction with the new one
+
+                        ModEntry.Instance.Monitor.VerboseLog($"Transpiler replaced \"axe.upgradeLevel >= 1\" with a configurable value at line {x}.");
+                    }
+                }
+
+                var damageMethod = AccessTools.Method(typeof(HarmonyPatch_BushesAreDestroyable), nameof(improveNormalAxeDamage)); //get the method to use when modifying 
+
+                for (int x = patched.Count - 5; x >= 0; x--) //for each instruction, looping backward, skipping the last 4
+                {
+                    //if these instructions push axe.upgradeLevel's value onto the stack, convert it to a float, and divide it by 5
+                    if (patched[x].opcode == OpCodes.Ldfld && patched[x].operand?.Equals(upgradeField) == true
+                     && (patched[x + 1].opcode == OpCodes.Call || patched[x + 1].opcode == OpCodes.Callvirt)
+                     && patched[x + 2].opcode == OpCodes.Conv_R4
+                     && patched[x + 3].opcode == OpCodes.Ldc_R4
+                     && patched[x + 4].opcode == OpCodes.Div)
+                    {
+                        patched.Insert(x + 5, new CodeInstruction(OpCodes.Call, damageMethod)); //after the original value is calculated, add a method call to conditionally modify it
+
+                        ModEntry.Instance.Monitor.VerboseLog($"Transpiler replaced \"axe.upgradeLevel / 5f\" with a conditional value at line {x}.");
                     }
                 }
 
@@ -93,9 +167,24 @@ namespace DestroyableBushes
             }
             catch (Exception ex)
             {
-                ModEntry.Instance.Monitor.LogOnce($"Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\" has encountered an error. Transpiler \"{nameof(performToolAction_Transpiler)}\" will not be applied. Full error message:\n{ex.ToString()}", LogLevel.Error);
+                ModEntry.Instance.Monitor.LogOnce($"Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\" has encountered an error. Transpiler \"{nameof(performToolAction_Transpiler)}\" will not be applied. Bushes may be indestructible. Full error message:\n{ex.ToString()}", LogLevel.Error);
                 return instructions; //return the original instructions
             }
+        }
+
+        /// <summary>Gets the number of upgrades required for an axe to cut down bushes, based on user configuration settings.</summary>
+        /// <returns>The number of upgrades required. 0 is the default axe, 1 is the copper axe, etc.</returns>
+        private static int getUpgradeLevelRequirement()
+        {
+            return ModEntry.Config?.AxeUpgradesRequired ?? 0; //use the config value if available, or default to 0
+        }
+
+        /// <summary>Modifies the damage value used by axes when hitting non-tea bushes.</summary>
+        /// <param name="oldDamage">The original damage value produced by the game.</param>
+        /// <returns>The modified damage value to use.</returns>
+        private static float improveNormalAxeDamage(float oldDamage)
+        {
+            return Math.Max(oldDamage, 0.125f); //deal at least 0.125 damage (i.e. destroy bushes in 8 hits or less)
         }
 
         /// <summary>Makes all bushes destroyable by appropriate tools.</summary>
@@ -148,7 +237,7 @@ namespace DestroyableBushes
             }
             catch (Exception ex)
             {
-                ModEntry.Instance.Monitor.LogOnce($"Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\" has encountered an error. Bushes might not be destroyable. Full error message:\n{ex.ToString()}", LogLevel.Error);
+                ModEntry.Instance.Monitor.LogOnce($"Harmony patch \"{nameof(HarmonyPatch_BushesAreDestroyable)}\" has encountered an error. Bushes might be indestructible. Full error message:\n{ex.ToString()}", LogLevel.Error);
             }
         }
     }
