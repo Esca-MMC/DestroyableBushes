@@ -1,5 +1,5 @@
 # Destroyable Bushes
-A mod for the game Stardew Valley, allowing players to destroy every type of bush with an upgraded axe. Destroyed bushes drop small amounts of wood and respawn after 3 days. These features can be customized in the config.json file.
+A mod for the game Stardew Valley, allowing players to destroy every type of bush with an axe. Destroyed bushes drop small amounts of wood and respawn after 3 days by default. These features can be customized in the config.json file.
 
 ## Contents
 * [Installation](#installation)
