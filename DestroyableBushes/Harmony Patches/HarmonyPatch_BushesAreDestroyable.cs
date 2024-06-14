@@ -51,7 +51,7 @@ namespace DestroyableBushes
                 [...]
                 if ((int)axe.upgradeLevel >= getUpgradeLevelRequirement() || (int)this.size == 3)
                 [...]
-                this.health -= (((int)this.size == 3) ? 0.5f : improveNormalAxeDamage(((float)(int)axe.upgradeLevel / 5f)));
+                this.health -= (((int)this.size == 3) ? 0.5f : modifyAxeDamage(((float)(int)axe.upgradeLevel / 5f)));
              
             Old IL:
                 IL_000b: ldarg.0
@@ -95,7 +95,7 @@ namespace DestroyableBushes
 		        IL_00dd: conv.r4
 		        IL_00de: ldc.r4 5
 		        IL_00e3: div
-                    (?): call float DestroyableBushes.HarmonyPatch_BushesAreDestroyable::improveNormalAxeDamage(float)
+                    (?): call float DestroyableBushes.HarmonyPatch_BushesAreDestroyable::modifyAxeDamage(float)
 		        IL_00e4: br.s IL_00eb
         */
 
@@ -145,7 +145,7 @@ namespace DestroyableBushes
                     }
                 }
 
-                var damageMethod = AccessTools.Method(typeof(HarmonyPatch_BushesAreDestroyable), nameof(improveNormalAxeDamage)); //get the method to use when modifying 
+                var damageMethod = AccessTools.Method(typeof(HarmonyPatch_BushesAreDestroyable), nameof(modifyAxeDamage)); //get the method to use when modifying 
 
                 for (int x = patched.Count - 5; x >= 0; x--) //for each instruction, looping backward, skipping the last 4
                 {
@@ -181,9 +181,13 @@ namespace DestroyableBushes
         /// <summary>Modifies the damage value used by axes when hitting non-tea bushes.</summary>
         /// <param name="oldDamage">The original damage value produced by the game.</param>
         /// <returns>The modified damage value to use.</returns>
-        private static float improveNormalAxeDamage(float oldDamage)
+        private static float modifyAxeDamage(float oldDamage)
         {
-            return Math.Max(oldDamage, 0.125f); //deal at least 0.125 damage (i.e. destroy bushes in 8 hits or less)
+            float newDamage = Math.Max(oldDamage, 0.125f); //deal at least 0.125 damage (i.e. destroy bushes in 8 hits or less)
+
+            newDamage *= ModEntry.Config?.AxeDamageMultiplier ?? 1; //multiply damage based on the player's config, if available
+
+            return newDamage;
         }
 
         /// <summary>Makes all bushes destroyable by appropriate tools.</summary>
