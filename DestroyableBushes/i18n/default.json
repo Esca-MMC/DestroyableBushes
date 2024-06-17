@@ -2,7 +2,7 @@
   "AxeUpgradesRequired.Name": "Minimum axe upgrade",
   "AxeUpgradesRequired.Desc": "The minimum axe upgrade required to destroy bushes.",
   "AxeDamageMultiplier.Name": "Axe damage multiplier",
-  "AxeDamageMultiplier.Desc": "A damage multiplier used when axes hit non-tea bushes.\nExamples: 0.5 deals 50% less damage. 2 deals 200% damage. 8 destroys a bush in one hit with any axe.",
+  "AxeDamageMultiplier.Desc": "A damage multiplier used when axes hit non-tea bushes.\nExamples: 0.5 deals 50% less damage. 2 deals 200% damage. 8 destroys a bush in one hit with any axe.\nNote: To prevent bugs, walnut bushes always take at least 2 hits.",
   "WhenBushesRegrow.Name": "When bushes regrow",
   "WhenBushesRegrow.Desc": "The amount of time before destroyed bushes will regrow.\nType a number and then a unit of time (Days, Seasons, Years).\nIf this is blank, bushes will never regrow.\nExamples: \"3 days\" \"1 season\" \"1 year\"",
   "DestroyableBushLocations.Name": "Destroyable bush locations",
