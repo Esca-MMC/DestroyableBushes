@@ -5,7 +5,6 @@ using StardewValley.TerrainFeatures;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using System.Threading;
 
 namespace DestroyableBushes
 {
@@ -163,7 +162,7 @@ namespace DestroyableBushes
                         [
                             new CodeInstruction(OpCodes.Ldarg_0), //load this Bush instance onto the stack
                             new CodeInstruction(OpCodes.Call, damageMethod) //call the damage method
-                        ]); 
+                        ]);
 
                         ModEntry.Instance.Monitor.VerboseLog($"Transpiler replaced \"axe.upgradeLevel / 5f\" with a conditional value at line {x}.");
                     }
