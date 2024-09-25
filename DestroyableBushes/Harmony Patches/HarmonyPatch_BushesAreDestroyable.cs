@@ -203,53 +203,55 @@ namespace DestroyableBushes
             return newDamage;
         }
 
-        /// <summary>Makes all bushes destroyable by appropriate tools.</summary>
-        /// <remarks>
-        /// This causes <see cref="Bush.isDestroyable()"/> to return true, allowing axes with at least 1 upgrade to destroy bushes.
-        /// </remarks>
+        /// <summary>Allows bushes to be destroyed when they normally wouldn't, if conditions match this mod's settings.</summary>
         /// <param name="__instance">The <see cref="Bush"/> being checked.</param>
         /// <param name="__result">True if this bush is destroyable.</param>
         private static void isDestroyable_Postfix(Bush __instance, ref bool __result)
         {
             try
             {
+                /* check location settings */
+
+                bool allowedAtThisLocation = false;
+
                 if (ModEntry.Config.DestroyableBushLocations?.Count > 0) //if the location list has any entries
                 {
                     foreach (string locationName in ModEntry.Config.DestroyableBushLocations) //for each name in the list
                     {
                         if (locationName.Equals(__instance.Location?.Name ?? "", StringComparison.OrdinalIgnoreCase)) //if the listed name matches the bush's location name
                         {
-                            __result = true; //return true
-                            return;
+                            allowedAtThisLocation = true;
                         }
                     }
                 }
-                else //if the location list has no entries
+                else //if no locations are listed
+                    allowedAtThisLocation = true;
+
+                if (!allowedAtThisLocation) //if this is location is NOT allowed
+                    return; //don't change anything
+
+                /* check bush size settings */
+
+                switch (__instance.size.Value)
                 {
-                    switch (__instance.size.Value)
-                    {
-                        case Bush.smallBush:
-                            if (ModEntry.Config.DestroyableBushTypes.SmallBushes) //if allowed to destroy this bush size
-                                __result = true; //return true
-                            return;
-                        case Bush.mediumBush:
-                            if (ModEntry.Config.DestroyableBushTypes.MediumBushes)
-                                __result = true;
-                            return;
-                        case Bush.largeBush:
-                            if (ModEntry.Config.DestroyableBushTypes.LargeBushes)
-                                __result = true;
-                            return;
-                        case Bush.walnutBush:
-                            if (ModEntry.Config.DestroyableBushTypes.WalnutBushes)
-                                __result = true;
-                            return;
+                    case Bush.smallBush:
+                        if (ModEntry.Config.DestroyableBushTypes.SmallBushes) //if settings allow this bush size to be destroyed
+                            __result = true; //override the original result
+                        return;
+                    case Bush.mediumBush:
+                        if (ModEntry.Config.DestroyableBushTypes.MediumBushes)
+                            __result = true;
+                        return;
+                    case Bush.largeBush:
+                        if (ModEntry.Config.DestroyableBushTypes.LargeBushes)
+                            __result = true;
+                        return;
+                    case Bush.walnutBush:
+                        if (ModEntry.Config.DestroyableBushTypes.WalnutBushes)
+                            __result = true;
+                        return;
 
-                    }
                 }
-
-                //return the original result without modifying it
-                return;
             }
             catch (Exception ex)
             {
