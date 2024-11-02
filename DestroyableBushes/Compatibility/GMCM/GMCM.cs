@@ -61,21 +61,19 @@ namespace DestroyableBushes
                     allowedValues: ["0", "1", "2", "3", "4"],
                     formatAllowedValue: (string val) =>
                     {
-                        string axeDisplayName = Game1.content.LoadString("Strings\\StringsFromCSFiles:Axe.cs.1"); //load the translated word "Axe"
-
-                        //construct the game's translated display name for each entry
+                        //get the game's translated display name for each entry
                         switch (val)
                         {
                             case "1":
-                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14299", axeDisplayName);
+                                return Game1.content.LoadString("Strings\\Tools:Axe_Copper_Name");
                             case "2":
-                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14300", axeDisplayName);
+                                return Game1.content.LoadString("Strings\\Tools:Axe_Steel_Name");
                             case "3":
-                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14301", axeDisplayName);
+                                return Game1.content.LoadString("Strings\\Tools:Axe_Gold_Name");
                             case "4":
-                                return Game1.content.LoadString("Strings\\StringsFromCSFiles:Tool.cs.14302", axeDisplayName);
+                                return Game1.content.LoadString("Strings\\Tools:Axe_Iridium_Name");
                             default:
-                                return axeDisplayName;
+                                return Game1.content.LoadString("Strings\\Tools:Axe_Name");
                         }
                     }
                 );
