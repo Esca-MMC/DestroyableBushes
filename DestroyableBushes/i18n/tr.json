@@ -11,6 +11,9 @@
 	"DestroyableBushTypes.MediumBushes.Desc": "Orta boy çalıları yok edilebilir yapmak için bu kutuyu işaretleyin. Bunlar çilek üretebilen türlerdir.",
 	"DestroyableBushTypes.LargeBushes.Name": "Büyük çalılar",
 	"DestroyableBushTypes.LargeBushes.Desc": "Büyük çalıları yok edilebilir yapmak için bu kutuyu işaretleyin.",
+	"BushTypeDurability.SmallBushes.Name": "Küçük çalılar",
+	"BushTypeDurability.MediumBushes.Name": "Orta boy çalılar",
+	"BushTypeDurability.LargeBushes.Name": "Büyük çalılar",
 	"AmountOfWoodDropped.Name": "Düşen odun miktarı",
 	"AmountOfWoodDropped.Desc": "Her bir çalı türü yok edildiğinde düşen odun parçalarının sayısı.",
 	"AmountOfWoodDropped.SmallBushes.Name": "Küçük çalılar",
@@ -20,5 +23,9 @@
 	"AmountOfWoodDropped.LargeBushes.Name": "Büyük çalılar",
 	"AmountOfWoodDropped.LargeBushes.Desc": "Büyük bir çalı yok edildiğinde düşen odun parçalarının sayısı.",
 	"AmountOfWoodDropped.GreenTeaBushes.Name": "Yeşil çay çalıları",
-	"AmountOfWoodDropped.GreenTeaBushes.Desc": "Yeşil çay çalısı yok edildiğinde düşen odun parçalarının sayısı."
+	"AmountOfWoodDropped.GreenTeaBushes.Desc": "Yeşil çay çalısı yok edildiğinde düşen odun parçalarının sayısı.",
+	"AmountOfExperienceGained.SmallBushes.Name": "Küçük çalılar",
+	"AmountOfExperienceGained.MediumBushes.Name": "Orta boy çalılar",
+	"AmountOfExperienceGained.LargeBushes.Name": "Büyük çalılar",
+	"AmountOfExperienceGained.GreenTeaBushes.Name": "Yeşil çay çalıları"
 }

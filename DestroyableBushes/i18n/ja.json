@@ -11,6 +11,9 @@
   "DestroyableBushTypes.MediumBushes.Desc": "中くらいの茂みを破壊可能にするには、このボックスにチェックを入れる。",
   "DestroyableBushTypes.LargeBushes.Name": "大きな茂み",
   "DestroyableBushTypes.LargeBushes.Desc": "大きな茂みを破壊可能にするには、このボックスにチェックを入れる。",
+  "BushTypeDurability.SmallBushes.Name": "小さな茂み",
+  "BushTypeDurability.MediumBushes.Name": "中くらいの茂み(ベリーが実るタイプ)",
+  "BushTypeDurability.LargeBushes.Name": "大きな茂み",
   "AmountOfWoodDropped.Name": "木材のドロップ量",
   "AmountOfWoodDropped.Desc": "それぞれの種類の茂みが破壊されたときにドロップされる木材の数。",
   "AmountOfWoodDropped.SmallBushes.Name": "小さな茂み",
@@ -20,5 +23,9 @@
   "AmountOfWoodDropped.LargeBushes.Name": "大きな茂み",
   "AmountOfWoodDropped.LargeBushes.Desc": "大きな茂みを破壊した時にドロップされる木材の数。",
   "AmountOfWoodDropped.GreenTeaBushes.Name": "緑茶の苗木",
-  "AmountOfWoodDropped.GreenTeaBushes.Desc": "緑茶の苗木を破壊した時にドロップされる木材の数。"
+  "AmountOfWoodDropped.GreenTeaBushes.Desc": "緑茶の苗木を破壊した時にドロップされる木材の数。",
+  "AmountOfExperienceGained.SmallBushes.Name": "小さな茂み",
+  "AmountOfExperienceGained.MediumBushes.Name": "中くらいの茂み(ベリーが実るタイプ)",
+  "AmountOfExperienceGained.LargeBushes.Name": "大きな茂み",
+  "AmountOfExperienceGained.GreenTeaBushes.Name": "緑茶の苗木"
 }

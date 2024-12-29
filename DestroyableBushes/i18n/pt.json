@@ -15,6 +15,10 @@
   "DestroyableBushTypes.LargeBushes.Desc": "Marque essa opção para fazer com que arbustos grandes possam ser destruídos.",
   "DestroyableBushTypes.WalnutBushes.Name": "Arbustos de nozes",
   "DestroyableBushTypes.WalnutBushes.Desc": "Marque essa opção para fazer com que arbustos de nozes (Ilha Gengibre) possam ser destruídos.",
+  "BushTypeDurability.SmallBushes.Name": "Arbustos pequenos",
+  "BushTypeDurability.MediumBushes.Name": "Arbustos médios",
+  "BushTypeDurability.LargeBushes.Name": "Arbustos grandes",
+  "BushTypeDurability.WalnutBushes.Name": "Arbustos de nozes",
   "AmountOfWoodDropped.Name": "Quantidade de madeira recebida",
   "AmountOfWoodDropped.Desc": "O número de peças de madeira recebida após cada tipo de arbusto ser destruído.",
   "AmountOfWoodDropped.SmallBushes.Name": "Arbustos pequenos",
@@ -26,5 +30,10 @@
   "AmountOfWoodDropped.WalnutBushes.Name": "Arbustos de nozes",
   "AmountOfWoodDropped.WalnutBushes.Desc": "O número de peças de madeira recebida quando um arbusto de noz é destruído.",
   "AmountOfWoodDropped.GreenTeaBushes.Name": "Arbustos de chá",
-  "AmountOfWoodDropped.GreenTeaBushes.Desc": "O número de peças de madeira recebida quando um arbusto de chá é destruído."
+  "AmountOfWoodDropped.GreenTeaBushes.Desc": "O número de peças de madeira recebida quando um arbusto de chá é destruído.",
+  "AmountOfExperienceGained.SmallBushes.Name": "Arbustos pequenos",
+  "AmountOfExperienceGained.MediumBushes.Name": "Arbustos médios",
+  "AmountOfExperienceGained.LargeBushes.Name": "Arbustos grandes",
+  "AmountOfExperienceGained.WalnutBushes.Name": "Arbustos de nozes",
+  "AmountOfExperienceGained.GreenTeaBushes.Name": "Arbustos de chá"
 }

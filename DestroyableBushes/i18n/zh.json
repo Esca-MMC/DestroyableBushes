@@ -17,6 +17,10 @@
   "DestroyableBushTypes.LargeBushes.Desc": "选中此框，允许破坏大型灌木。",
   "DestroyableBushTypes.WalnutBushes.Name": "核桃灌木",
   "DestroyableBushTypes.WalnutBushes.Desc": "选中此框，允许破坏核桃灌木。",
+  "BushTypeDurability.SmallBushes.Name": "小型灌木",
+  "BushTypeDurability.MediumBushes.Name": "中型灌木",
+  "BushTypeDurability.LargeBushes.Name": "大型灌木",
+  "BushTypeDurability.WalnutBushes.Name": "核桃灌木",
   "AmountOfWoodDropped.Name": "掉落的木材数量",
   "AmountOfWoodDropped.Desc": "每种灌木被破坏时，掉落的木材数量。",
   "AmountOfWoodDropped.SmallBushes.Name": "小型灌木",
@@ -28,5 +32,10 @@
   "AmountOfWoodDropped.WalnutBushes.Name": "核桃灌木",
   "AmountOfWoodDropped.WalnutBushes.Desc": "核桃灌木被破坏后，掉落的木材数量",
   "AmountOfWoodDropped.GreenTeaBushes.Name": "茶树",
-  "AmountOfWoodDropped.GreenTeaBushes.Desc": "茶树被破坏后，掉落的木材数量。"
+  "AmountOfWoodDropped.GreenTeaBushes.Desc": "茶树被破坏后，掉落的木材数量。",
+  "AmountOfExperienceGained.SmallBushes.Name": "小型灌木",
+  "AmountOfExperienceGained.MediumBushes.Name": "中型灌木",
+  "AmountOfExperienceGained.LargeBushes.Name": "大型灌木",
+  "AmountOfExperienceGained.WalnutBushes.Name": "核桃灌木",
+  "AmountOfExperienceGained.GreenTeaBushes.Name": "茶树"
 }

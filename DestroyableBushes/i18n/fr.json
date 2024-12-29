@@ -17,6 +17,10 @@
   "DestroyableBushTypes.LargeBushes.Desc": "Cochez cette case pour rendre les grands buissons destructibles.",
   "DestroyableBushTypes.WalnutBushes.Name": "Buissons à noix",
   "DestroyableBushTypes.WalnutBushes.Desc": "Cochez cette case pour rendre les buissons à noix destructibles.",
+  "BushTypeDurability.SmallBushes.Name": "Petits buissons",
+  "BushTypeDurability.MediumBushes.Name": "Buissons moyens",
+  "BushTypeDurability.LargeBushes.Name": "Grands buissons",
+  "BushTypeDurability.WalnutBushes.Name": "Buissons à noix",
   "AmountOfWoodDropped.Name": "Quantité de bois lâchée",
   "AmountOfWoodDropped.Desc": "Le nombre de morceaux de bois lâchés lorsque chaque type de buisson est détruit.",
   "AmountOfWoodDropped.SmallBushes.Name": "Petits buissons",
@@ -28,5 +32,10 @@
   "AmountOfWoodDropped.WalnutBushes.Name": "Buissons à noix",
   "AmountOfWoodDropped.WalnutBushes.Desc": "Le nombre de morceaux de bois lâchés lorsque un buisson à noix est détruit.",
   "AmountOfWoodDropped.GreenTeaBushes.Name": "Buissons de thé vert",
-  "AmountOfWoodDropped.GreenTeaBushes.Desc": "Le nombre de morceaux de bois lâchés lorsque un buisson de thé vert est détruit."
+  "AmountOfWoodDropped.GreenTeaBushes.Desc": "Le nombre de morceaux de bois lâchés lorsque un buisson de thé vert est détruit.",
+  "AmountOfExperienceGained.SmallBushes.Name": "Petits buissons",
+  "AmountOfExperienceGained.MediumBushes.Name": "Buissons moyens",
+  "AmountOfExperienceGained.LargeBushes.Name": "Grands buissons",
+  "AmountOfExperienceGained.WalnutBushes.Name": "Buissons à noix",
+  "AmountOfExperienceGained.GreenTeaBushes.Name": "Buissons de thé vert"
 }

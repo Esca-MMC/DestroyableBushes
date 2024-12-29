@@ -15,6 +15,10 @@
   "DestroyableBushTypes.LargeBushes.Desc": "Aktivieren Sie dieses Kontrollkästchen, um große Büsche zerstörbar zu machen.",
   "DestroyableBushTypes.WalnutBushes.Name": "Walnussbüsche",
   "DestroyableBushTypes.WalnutBushes.Desc": "Aktivieren Sie dieses Kontrollkästchen, um Walnussbüsche zerstörbar zu machen.",
+  "BushTypeDurability.SmallBushes.Name": "Kleine Büsche",
+  "BushTypeDurability.MediumBushes.Name": "Mittlere Büsche",
+  "BushTypeDurability.LargeBushes.Name": "Große Büsche",
+  "BushTypeDurability.WalnutBushes.Name": "Walnussbüsche",
   "AmountOfWoodDropped.Name": "Menge des abgeworfenen Holzes",
   "AmountOfWoodDropped.Desc": "Die Anzahl der Holzstücke, die fallen, wenn jede Buschart zerstört wird.",
   "AmountOfWoodDropped.SmallBushes.Name": "Kleine Büsche",
@@ -26,5 +30,10 @@
   "AmountOfWoodDropped.WalnutBushes.Name": "Walnussbüsche",
   "AmountOfWoodDropped.WalnutBushes.Desc": "Die Anzahl der Holzstücke, die fallen, wenn ein Walnussbusch zerstört wird.",
   "AmountOfWoodDropped.GreenTeaBushes.Name": "Grünteebüsche",
-  "AmountOfWoodDropped.GreenTeaBushes.Desc": "Die Anzahl der Holzstücke, die fallen, wenn ein Grünteebusch zerstört wird."
+  "AmountOfWoodDropped.GreenTeaBushes.Desc": "Die Anzahl der Holzstücke, die fallen, wenn ein Grünteebusch zerstört wird.",
+  "AmountOfExperienceGained.SmallBushes.Name": "Kleine Büsche",
+  "AmountOfExperienceGained.MediumBushes.Name": "Mittlere Büsche",
+  "AmountOfExperienceGained.LargeBushes.Name": "Große Büsche",
+  "AmountOfExperienceGained.WalnutBushes.Name": "Walnussbüsche",
+  "AmountOfExperienceGained.GreenTeaBushes.Name": "Grünteebüsche"
 }

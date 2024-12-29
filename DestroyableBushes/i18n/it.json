@@ -17,6 +17,10 @@
   "DestroyableBushTypes.LargeBushes.Desc": "Seleziona questa casella per rendere i cespugli grandi distruttibili.",
   "DestroyableBushTypes.WalnutBushes.Name": "Cespugli di noce",
   "DestroyableBushTypes.WalnutBushes.Desc": "Seleziona questa casella per rendere i cespugli di noce distruttibili.",
+  "BushTypeDurability.SmallBushes.Name": "Cespugli piccoli",
+  "BushTypeDurability.MediumBushes.Name": "Cespugli medi",
+  "BushTypeDurability.LargeBushes.Name": "Cespugli grandi",
+  "BushTypeDurability.WalnutBushes.Name": "Cespugli di noci",
   "AmountOfWoodDropped.Name": "Quantità di legna caduta",
   "AmountOfWoodDropped.Desc": "Il numero di pezzi di legno lasciati cadere quando ciascun tipo di cespuglio viene distrutto.",
   "AmountOfWoodDropped.SmallBushes.Name": "Cespugli piccoli",
@@ -28,5 +32,10 @@
   "AmountOfWoodDropped.WalnutBushes.Name": "Cespugli di noci",
   "AmountOfWoodDropped.WalnutBushes.Desc": "Il numero di pezzi di legno caduti quando un cespuglio di noci viene distrutto.",
   "AmountOfWoodDropped.GreenTeaBushes.Name": "Cespugli di tè verde",
-  "AmountOfWoodDropped.GreenTeaBushes.Desc": "Il numero di pezzi di legno caduti quando un cespuglio di tè verde viene distrutto."
+  "AmountOfWoodDropped.GreenTeaBushes.Desc": "Il numero di pezzi di legno caduti quando un cespuglio di tè verde viene distrutto.",
+  "AmountOfExperienceGained.SmallBushes.Name": "Cespugli piccoli",
+  "AmountOfExperienceGained.MediumBushes.Name": "Cespugli medi",
+  "AmountOfExperienceGained.LargeBushes.Name": "Cespugli grandi",
+  "AmountOfExperienceGained.WalnutBushes.Name": "Cespugli di noci",
+  "AmountOfExperienceGained.GreenTeaBushes.Name": "Cespugli di tè verde"
 }
