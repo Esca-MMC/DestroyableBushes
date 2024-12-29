@@ -51,6 +51,9 @@ namespace DestroyableBushes
                 );
 
                 //register an option for each config setting
+
+                /* top-level options */
+
                 api.AddTextOption
                 (
                     mod: ModManifest,
@@ -105,6 +108,8 @@ namespace DestroyableBushes
                     tooltip: () => Helper.Translation.Get("DestroyableBushLocations.Desc")
                 );
 
+                /* destroyable bush types */
+
                 api.AddSectionTitle
                 (
                     mod: ModManifest,
@@ -147,6 +152,57 @@ namespace DestroyableBushes
                     name: () => Helper.Translation.Get("DestroyableBushTypes.WalnutBushes.Name"),
                     tooltip: () => Helper.Translation.Get("DestroyableBushTypes.WalnutBushes.Desc")
                 );
+
+                /* bush type durability */
+
+                api.AddSectionTitle
+                (
+                    mod: ModManifest,
+                    text: () => Helper.Translation.Get("BushTypeDurability.Name"),
+                    tooltip: () => Helper.Translation.Get("BushTypeDurability.Desc")
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.BushTypeDurability.SmallBushes,
+                    setValue: (float val) => Config.BushTypeDurability.SmallBushes = val,
+                    name: () => Helper.Translation.Get("BushTypeDurability.SmallBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("BushTypeDurability.SmallBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.BushTypeDurability.MediumBushes,
+                    setValue: (float val) => Config.BushTypeDurability.MediumBushes = val,
+                    name: () => Helper.Translation.Get("BushTypeDurability.MediumBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("BushTypeDurability.MediumBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.BushTypeDurability.LargeBushes,
+                    setValue: (float val) => Config.BushTypeDurability.LargeBushes = val,
+                    name: () => Helper.Translation.Get("BushTypeDurability.LargeBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("BushTypeDurability.LargeBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.BushTypeDurability.WalnutBushes,
+                    setValue: (float val) => Config.BushTypeDurability.WalnutBushes = val,
+                    name: () => Helper.Translation.Get("BushTypeDurability.WalnutBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("BushTypeDurability.WalnutBushes.Desc"),
+                    min: 0
+                );
+
+                /* amount of wood dropped */
 
                 api.AddSectionTitle
                 (
@@ -202,6 +258,65 @@ namespace DestroyableBushes
                     setValue: (int val) => Config.AmountOfWoodDropped.GreenTeaBushes = val,
                     name: () => Helper.Translation.Get("AmountOfWoodDropped.GreenTeaBushes.Name"),
                     tooltip: () => Helper.Translation.Get("AmountOfWoodDropped.GreenTeaBushes.Desc"),
+                    min: 0
+                );
+
+                /* amount of experience gained */
+
+                api.AddSectionTitle
+                (
+                    mod: ModManifest,
+                    text: () => Helper.Translation.Get("AmountOfExperienceGained.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfExperienceGained.Desc")
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.AmountOfExperienceGained.SmallBushes,
+                    setValue: (int val) => Config.AmountOfExperienceGained.SmallBushes = val,
+                    name: () => Helper.Translation.Get("AmountOfExperienceGained.SmallBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfExperienceGained.SmallBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.AmountOfExperienceGained.MediumBushes,
+                    setValue: (int val) => Config.AmountOfExperienceGained.MediumBushes = val,
+                    name: () => Helper.Translation.Get("AmountOfExperienceGained.MediumBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfExperienceGained.MediumBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.AmountOfExperienceGained.LargeBushes,
+                    setValue: (int val) => Config.AmountOfExperienceGained.LargeBushes = val,
+                    name: () => Helper.Translation.Get("AmountOfExperienceGained.LargeBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfExperienceGained.LargeBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.AmountOfExperienceGained.WalnutBushes,
+                    setValue: (int val) => Config.AmountOfExperienceGained.WalnutBushes = val,
+                    name: () => Helper.Translation.Get("AmountOfExperienceGained.WalnutBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfExperienceGained.WalnutBushes.Desc"),
+                    min: 0
+                );
+
+                api.AddNumberOption
+                (
+                    mod: ModManifest,
+                    getValue: () => Config.AmountOfExperienceGained.GreenTeaBushes,
+                    setValue: (int val) => Config.AmountOfExperienceGained.GreenTeaBushes = val,
+                    name: () => Helper.Translation.Get("AmountOfExperienceGained.GreenTeaBushes.Name"),
+                    tooltip: () => Helper.Translation.Get("AmountOfExperienceGained.GreenTeaBushes.Desc"),
                     min: 0
                 );
             }

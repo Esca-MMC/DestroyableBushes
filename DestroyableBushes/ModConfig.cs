@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 namespace DestroyableBushes
 {
+    /*******************/
+    /* Config settings */
+    /*******************/
+
     /// <summary>A collection of this mod's config.json file settings.</summary>
     public class ModConfig
     {
@@ -99,12 +103,27 @@ namespace DestroyableBushes
         public List<string> DestroyableBushLocations { get; set; } = new List<string>();
         /// <summary>A list of bush types that are allowed to be destroyed.</summary>
         public DestroyableBushTypes DestroyableBushTypes { get; set; } = new DestroyableBushTypes();
-
+        /// <summary>Any damage bushes take is divided by these numbers, effectively multiplying their total health.</summary>
+        public BushTypeDurability BushTypeDurability { get; set; } = new BushTypeDurability();
         /// <summary>The number of wood pieces dropped by each type of bush when destroyed.</summary>
         public AmountOfWoodDropped AmountOfWoodDropped { get; set; } = new AmountOfWoodDropped();
+        /// <summary>The amount of Foraging skill XP gained when destroying each type of bush.</summary>
+        public AmountOfExperienceGained AmountOfExperienceGained { get; set; } = new AmountOfExperienceGained();
     }
 
-    /// <summary>A group of config.json file settings. Determines which bush sizes are allowed to be destroyed.</summary>
+    /**********************/
+    /* Subcomponent types */
+    /**********************/
+
+    /// <summary>The units of time used by the <see cref="ModConfig.WhenBushesRegrow"/> setting.</summary>
+    public enum RegrowUnit
+    {
+        Days,
+        Seasons,
+        Years
+    }
+
+    /// <summary>A group of config settings. Determines which bush sizes are allowed to be destroyed.</summary>
     public class DestroyableBushTypes
     {
         public bool SmallBushes { get; set; } = true;
@@ -113,7 +132,16 @@ namespace DestroyableBushes
         public bool WalnutBushes { get; set; } = true;
     }
 
-    /// <summary>A group of config.json file settings. Sets the number of wood pieces dropped by each type of bush when destroyed.</summary>
+    /// <summary>A group of config settings. Any damage bushes take is divided by these numbers, effectively multiplying their total health.</summary>
+    public class BushTypeDurability
+    {
+        public float SmallBushes { get; set; } = 0.75f;
+        public float MediumBushes { get; set; } = 1.0f;
+        public float LargeBushes { get; set; } = 1.25f;
+        public float WalnutBushes { get; set; } = 1.0f;
+    }
+
+    /// <summary>A group of config settings. Sets the number of wood pieces dropped by each type of bush when destroyed.</summary>
     public class AmountOfWoodDropped
     {
         public int SmallBushes { get; set; } = 2;
@@ -123,11 +151,13 @@ namespace DestroyableBushes
         public int GreenTeaBushes { get; set; } = 0;
     }
 
-    /// <summary>The units of time used by the <see cref="ModConfig.WhenBushesRegrow"/> setting.</summary>
-    public enum RegrowUnit
+    /// <summary>A group of config settings. Sets the amount of Foraging skill XP gained when destroying each type of bush.</summary>
+    public class AmountOfExperienceGained
     {
-        Days,
-        Seasons,
-        Years
+        public int SmallBushes { get; set; } = 10;
+        public int MediumBushes { get; set; } = 14;
+        public int LargeBushes { get; set; } = 18;
+        public int WalnutBushes { get; set; } = 14;
+        public int GreenTeaBushes { get; set; } = 0;
     }
 }

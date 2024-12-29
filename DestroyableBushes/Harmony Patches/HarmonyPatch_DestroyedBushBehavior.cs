@@ -27,7 +27,7 @@ namespace DestroyableBushes
             }
         }
 
-        /// <summary>If this bush was destroyed, this adds it to this mod's "destroyed bushes" list. It also drops an amount of wood designated by this mod's config.json file settings.</summary>
+        /// <summary>If this bush was destroyed, add it to this mod's "destroyed bushes" list. Also provide foraging experience and drop an amount of wood, based on this mod's config settings.</summary>
         /// <param name="t">The <see cref="Tool"/> used on this bush.</param>
         /// <param name="tileLocation">The tile on which the tool is being used.</param>
         /// <param name="__instance">The <see cref="Bush"/> on which a tool is being used.</param>
@@ -39,31 +39,40 @@ namespace DestroyableBushes
                 if (__result) //if this bush was destroyed
                 {
                     int amountOfWood; //the amount of wood this bush should drop
-                    bool shouldRegrow = false; //whether this bush should eventually be respawned
+                    int amountOfXP; //the amount of foraging experience this bush should give
+                    bool shouldRegrow; //whether this bush should eventually be respawned
 
                     switch (__instance.size.Value) //based on the bush's size, set the amount of wood
                     {
                         case Bush.smallBush:
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.SmallBushes ?? 0;
+                            amountOfXP = ModEntry.Config?.AmountOfExperienceGained?.SmallBushes ?? 0;
                             shouldRegrow = true;
                             break;
                         case Bush.mediumBush:
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.MediumBushes ?? 0;
+                            amountOfXP = ModEntry.Config?.AmountOfExperienceGained?.MediumBushes ?? 0;
                             shouldRegrow = true;
                             break;
                         case Bush.largeBush:
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.LargeBushes ?? 0;
+                            amountOfXP = ModEntry.Config?.AmountOfExperienceGained?.LargeBushes ?? 0;
                             shouldRegrow = true;
                             break;
                         case Bush.walnutBush:
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.WalnutBushes ?? 0;
+                            amountOfXP = ModEntry.Config?.AmountOfExperienceGained?.WalnutBushes ?? 0;
                             shouldRegrow = true;
                             break;
                         case Bush.greenTeaBush:
                             amountOfWood = ModEntry.Config?.AmountOfWoodDropped?.GreenTeaBushes ?? 0;
+                            amountOfXP = ModEntry.Config?.AmountOfExperienceGained?.GreenTeaBushes ?? 0;
+                            shouldRegrow = false;
                             break;
                         default:
                             amountOfWood = 0;
+                            amountOfXP = 0;
+                            shouldRegrow = false;
                             break;
                     }
 
@@ -72,7 +81,7 @@ namespace DestroyableBushes
                         int? safeOffset = null; //the bush's tilesheetOffset (or null if it should be ignored)
                         if (__instance.size.Value != Bush.walnutBush) //if this is NOT a walnut bush
                         {
-                            if (__instance.size.Value != Bush.mediumBush || __instance.townBush.Value) //and this is NOT a berry bush (medium town bushes do not produce berries)
+                            if (__instance.size.Value != Bush.mediumBush || __instance.townBush.Value) //and this is NOT a berry bush (i.e. a medium non-town bush)
                             {
                                 safeOffset = __instance.tileSheetOffset.Value; //get the bush's offset
                             }
@@ -96,9 +105,11 @@ namespace DestroyableBushes
                             );
                     }
 
+                    Farmer farmer = t?.getLastFarmerToUse(); //try to get the player who destroyed this bush
+
                     if (amountOfWood > 0) //if this bush should drop any wood
                     {
-                        if (t?.getLastFarmerToUse() is Farmer farmer && farmer.professions.Contains(12)) //if the player destroying this bush has the "Forester" profession
+                        if (farmer?.professions.Contains(Farmer.forester) == true) //if the player destroying this bush has the "Forester" profession
                         {
                             double multipliedWood = 1.25 * amountOfWood; //increase wood by 25%
                             amountOfWood = (int)Math.Floor(multipliedWood); //update the amount of wood (round down)
@@ -113,7 +124,12 @@ namespace DestroyableBushes
                         }
 
                         //drop the amount of wood at this bush's location
-                        Game1.createRadialDebris(__instance.Location, 12, (int)tileLocation.X, (int)tileLocation.Y, amountOfWood, true, -1, false, null);
+                        Game1.createRadialDebris(__instance.Location, Debris.woodDebris, (int)tileLocation.X, (int)tileLocation.Y, amountOfWood, true, -1, false, null);
+                    }
+
+                    if (amountOfXP > 0) //if this bush should give any experience
+                    {
+                        farmer?.gainExperience(Farmer.foragingSkill, amountOfXP); //gain foraging skill xp
                     }
                 }
             }

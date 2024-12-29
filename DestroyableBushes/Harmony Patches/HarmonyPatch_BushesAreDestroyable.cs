@@ -188,14 +188,35 @@ namespace DestroyableBushes
         /// <param name="oldDamage">The original damage value produced by the game.</param>
         /// <param name="bush">The bush being hit.</param>
         /// <returns>The modified damage value to use.</returns>
-        /// <remarks>
-        /// As of SDV 1.6.8, bushes normally start with 0 health, take 0.2 damage per axe upgrade when hit, and are destroyed at -1 health.
-        /// </remarks>
+        /// <remarks>As of SDV 1.6.8, bushes normally start with 0 health, take 0.2 damage per axe upgrade when hit, and are destroyed at -1 health. Tea bushes always take 0.5 damage instead.</remarks>
         private static float modifyAxeDamage(float oldDamage, Bush bush)
         {
-            float newDamage = Math.Max(oldDamage, 0.125f); //deal at least 0.125 damage (i.e. destroy bushes in 8 hits or less)
+            float newDamage = Math.Max(oldDamage, 0.125f); //deal at least 0.125 damage (i.e. destroy typical bushes in 8 hits or less)
 
-            newDamage *= ModEntry.Config?.AxeDamageMultiplier ?? 1; //multiply damage based on the player's config, or 1 if unavailable for some reason
+            newDamage *= ModEntry.Config?.AxeDamageMultiplier ?? 1; //multiply damage based on the player's config, or 1 if unavailable
+
+            //get the relevant value from "bush type durability"
+            float bushTypeDurability = 1;
+            if (ModEntry.Config?.BushTypeDurability != null)
+            {
+                switch (bush.size.Value)
+                {
+                    case Bush.smallBush:
+                        bushTypeDurability = ModEntry.Config.BushTypeDurability.SmallBushes;
+                        break;
+                    case Bush.mediumBush:
+                        bushTypeDurability = ModEntry.Config.BushTypeDurability.MediumBushes;
+                        break;
+                    case Bush.largeBush:
+                        bushTypeDurability = ModEntry.Config.BushTypeDurability.LargeBushes;
+                        break;
+                    case Bush.walnutBush:
+                        bushTypeDurability = ModEntry.Config.BushTypeDurability.WalnutBushes;
+                        break;
+                }
+            }
+
+            newDamage /= bushTypeDurability; //divide damage by the bush's durability multiplier (note: durability > 1 reduces damage, durability < 1 increases damage)
 
             if (bush.health == 0f && bush.size.Value == 4) //if this is the player's first hit on a walnut bush
                 return Math.Min(newDamage, 0.9f); //limit damage to prevent destroying it in a single hit (which causes issues with walnut drops)
