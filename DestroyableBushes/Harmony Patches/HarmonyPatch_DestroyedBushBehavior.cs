@@ -123,6 +123,12 @@ namespace DestroyableBushes
                             }
                         }
 
+                        //if the player has read the book "Woody's Secret", add a 5% chance to double the wood output (based on trees; see Tree.performToolAction)
+                        if (farmer?.stats.Get("Book_Woodcutting") != 0 && Game1.random.NextDouble() < 0.05)
+                        {
+                            amountOfWood *= 2;
+                        }
+
                         //drop the amount of wood at this bush's location
                         Game1.createRadialDebris(__instance.Location, Debris.woodDebris, (int)tileLocation.X, (int)tileLocation.Y, amountOfWood, true, -1, false, null);
                     }
