@@ -42,12 +42,23 @@ SmallBushes | **true** or false | If true, small bushes will be destroyable.
 MediumBushes | **true** or false | If true, medium bushes will be destroyable. These are the type that can produce berries.
 LargeBushes | **true** or false | If true, large bushes will be destroyable.
 WalnutBushes | **true** or false | If true, walnut bushes will be destroyable.
+BushTypeDurability | N/A | The settings below are durability multipliers for each type of bush. 0.5 gives them 50% total health, 2 gives them 200% health, etc.
+SmallBushes | A decimal (default **0.75**) | The durability multiplier for small bushes.
+MediumBushes | A decimal (default **1**) | The durability multiplier for medium bushes.
+LargeBushes | A decimal (default **1.25**) | The durability multiplier for large bushes.
+WalnutBushes | A decimal (default **1**) | The durability multiplier for walnut bushes.
 AmountOfWoodDropped | N/A | The settings below control how many pieces of wood are dropped by each bush type when destroyed. Players with the Forester profession will receive 25% more wood.
 SmallBushes | A positive integer (default **2**) | The number of wood pieces dropped by small bushes when destroyed.
 MediumBushes | A positive integer (default **4**) | The number of wood pieces dropped by medium bushes when destroyed.
 LargeBushes | A positive integer (default **8**) | The number of wood pieces dropped by large bushes when destroyed.
 WalnutBushes | A positive integer (default **4**) | The number of wood pieces dropped by walnut bushes when destroyed.
 GreenTeaBushes | A positive integer (default **0**) | The number of wood pieces dropped by green tea bushes when destroyed.
+AmountOfExperienceGained | N/A | The number of Foraging skill experience points (XP) you gain after destroying each type of bush.
+SmallBushes | A positive integer (default **10**) | The number of experience points gained when a small bush is destroyed.
+MediumBushes | A positive integer (default **14**) | The number of experience points gained when a small bush is destroyed.
+LargeBushes | A positive integer (default **18**) | The number of experience points gained when a small bush is destroyed.
+WalnutBushes | A positive integer (default **14**) | The number of experience points gained when a small bush is destroyed.
+GreenTeaBushes | A positive integer (default **0**) | The number of experience points gained when a small bush is destroyed.
 
 ## Commands
 This mod adds the following commands to SMAPI's console. They require the Console Commands mod, which is installed automatically by SMAPI.
@@ -55,10 +66,12 @@ This mod adds the following commands to SMAPI's console. They require the Consol
 ### add_bush
 The `add_bush` command creates a bush of the specified size. Bushes added by this command will regrow if that setting is enabled.
 
-**Usage:** `add_bush <size> [x y] [location]`
+**Usage:** `add_bush <size> [townBush] [tileSheetOffset] [x y] [location]`
 * **size**: The bush's size, as a name or number. 0 = "small", 1 = "medium", 2 = "large", 3 = "tea", 4 = "walnut".
+* **townBush** (optional): Whether this bush should use a "town bush" sprite. True or false. False if not provided. Some bush sizes don't have town sprites.
+* **tileSheetOffset** (optional): The "tilesheet offset" for this bush, as a number. 0 if not provided. If set to 1, medium bushes will have berries, and walnut bushes will have walnuts.
 * **x y** (optional): The bush's tile coordinates. If not provided, the bush will appear in front of the player.
-* **location** (optional): The name of the bush's map, e.g. \"Farm\". If not provided, the player's current map will be used.
+* **location** (optional): The name of the bush's map, e.g. "Farm" or "BusStop". If not provided, the player's current map will be used.
 
 **Examples:**
 * `add_bush 2`
@@ -66,12 +79,19 @@ The `add_bush` command creates a bush of the specified size. Bushes added by thi
 * `add_bush 2 64 19`
 * `add_bush 2 64 19 farm`
 
+* `add_bush 2`
+* `add_bush large`
+* `add_bush 2 false`
+* `add_bush 2 false 0`
+* `add_bush 2 false 0 64 19`
+* `add_bush 2 false 0 64 19 farm`
+
 ### remove_bush
 The `remove_bush` command removes a bush from the specified location. Bushes removed by this command will NOT regrow.
 
 **Usage:** `remove_bush [x y] [location]`
 * **x y** (optional): The bush's tile coordinates. If not provided, a bush will be removed on, or in front of, the player.
-* **location** (optional): The name of the bush's map, e.g. \"Farm\". If not provided, the player's current map will be used.
+* **location** (optional): The name of the bush's map, e.g. "Farm". If not provided, the player's current map will be used.
 
 **Examples:**
 * `remove_bush`
