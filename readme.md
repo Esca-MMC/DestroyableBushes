@@ -54,10 +54,10 @@ LargeBushes | A positive integer (default **8**) | The number of wood pieces dro
 WalnutBushes | A positive integer (default **4**) | The number of wood pieces dropped by walnut bushes when destroyed.
 GreenTeaBushes | A positive integer (default **0**) | The number of wood pieces dropped by green tea bushes when destroyed.
 AmountOfExperienceGained | N/A | The number of Foraging skill experience points (XP) you gain after destroying each type of bush.
-SmallBushes | A positive integer (default **10**) | The number of experience points gained when a small bush is destroyed.
-MediumBushes | A positive integer (default **14**) | The number of experience points gained when a small bush is destroyed.
-LargeBushes | A positive integer (default **18**) | The number of experience points gained when a small bush is destroyed.
-WalnutBushes | A positive integer (default **14**) | The number of experience points gained when a small bush is destroyed.
+SmallBushes | A positive integer (default **6**) | The number of experience points gained when a small bush is destroyed.
+MediumBushes | A positive integer (default **9**) | The number of experience points gained when a small bush is destroyed.
+LargeBushes | A positive integer (default **12**) | The number of experience points gained when a small bush is destroyed.
+WalnutBushes | A positive integer (default **9**) | The number of experience points gained when a small bush is destroyed.
 GreenTeaBushes | A positive integer (default **0**) | The number of experience points gained when a small bush is destroyed.
 
 ## Commands

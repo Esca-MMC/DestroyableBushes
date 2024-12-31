@@ -154,10 +154,10 @@ namespace DestroyableBushes
     /// <summary>A group of config settings. Sets the amount of Foraging skill XP gained when destroying each type of bush.</summary>
     public class AmountOfExperienceGained
     {
-        public int SmallBushes { get; set; } = 10;
-        public int MediumBushes { get; set; } = 14;
-        public int LargeBushes { get; set; } = 18;
-        public int WalnutBushes { get; set; } = 14;
+        public int SmallBushes { get; set; } = 6;
+        public int MediumBushes { get; set; } = 9;
+        public int LargeBushes { get; set; } = 12;
+        public int WalnutBushes { get; set; } = 9;
         public int GreenTeaBushes { get; set; } = 0;
     }
 }
