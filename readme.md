@@ -110,7 +110,7 @@ Language | File | Contributor(s)
 ---------|------|------------
 English | [default.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/default.json) | [Esca-MMC](https://github.com/Esca-MMC)
 Brazilian Portuguese | [pt.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/pt.json) | [GremilinDHamelin](https://www.nexusmods.com/stardewvalley/users/208749912)
-French | [fr.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/fr.json) | [Fsecho7](https://next.nexusmods.com/profile/Fsecho7)
+French | [fr.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/fr.json) | [Fsecho7](https://next.nexusmods.com/profile/Fsecho7), [Caranud](https://github.com/CaranudLapin)
 German | [de.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/de.json) | [777PamPam777](https://next.nexusmods.com/profile/777PamPam777)
 Italian | [it.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/it.json) | [7Kana](https://next.nexusmods.com/profile/7Kana)
 Japanese | [ja.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/ja.json) | [tikamin557](https://www.nexusmods.com/stardewvalley/users/78813038)
