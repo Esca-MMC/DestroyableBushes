@@ -76,11 +76,6 @@ The `add_bush` command creates a bush of the specified size. Bushes added by thi
 **Examples:**
 * `add_bush 2`
 * `add_bush large`
-* `add_bush 2 64 19`
-* `add_bush 2 64 19 farm`
-
-* `add_bush 2`
-* `add_bush large`
 * `add_bush 2 false`
 * `add_bush 2 false 0`
 * `add_bush 2 false 0 64 19`
