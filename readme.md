@@ -110,6 +110,6 @@ German | [de.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/Des
 Italian | [it.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/it.json) | [7Kana](https://next.nexusmods.com/profile/7Kana)
 Japanese | [ja.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/ja.json) | [tikamin557](https://next.nexusmods.com/profile/tikamin557)
 Korean | [ko.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/ko.json) | [wally232](https://github.com/wally232)
-Simplified Chinese | [zh.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/zh.json) | [sanyao1001](https://github.com/sanyao1001), [ichbinaprogrammer](https://github.com/ichbinaprogrammer), [BlackRosePetals](https://github.com/BlackRosePetals)
+Simplified Chinese | [zh.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/zh.json) | [sanyao1001](https://github.com/sanyao1001), [ichbinaprogrammer](https://github.com/ichbinaprogrammer), [BlackRosePetals](https://github.com/BlackRosePetals), [mushymato](https://github.com/mushymato)
 Turkish | [tr.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/tr.json) | [Rupurudu](https://github.com/Rupurudu)
 Russian | [ru.json](https://github.com/Esca-MMC/DestroyableBushes/blob/master/DestroyableBushes/i18n/ru.json) | [ValikBLR](https://next.nexusmods.com/profile/ValikBLR)
